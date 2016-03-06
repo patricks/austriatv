@@ -1,0 +1,4 @@
+github "Alamofire/Alamofire" ~> 3.0
+github "tristanhimmelman/AlamofireObjectMapper" ~> 2.1
+
+github "onevcat/Kingfisher" ~> 2.0

@@ -1,0 +1,14 @@
+//
+//  OverviewCollectionHeaderView.swift
+//  AustriaTV
+//
+//  Created by Patrick Steiner on 05.03.16.
+//  Copyright © 2016 Patrick. All rights reserved.
+//
+
+import UIKit
+
+class OverviewCollectionHeaderView: UICollectionReusableView {
+        
+    @IBOutlet weak var titleLabel: UILabel!
+}

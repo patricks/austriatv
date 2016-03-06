@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Episode Details View Controller-->
+        <scene sceneID="blf-uC-UEY">
+            <objects>
+                <viewController storyboardIdentifier="EpisodeDetails" id="VeP-sQ-l6c" customClass="EpisodeDetailsViewController" customModule="AustriaTV" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Avd-uD-48c"/>
+                        <viewControllerLayoutGuide type="bottom" id="EEg-3n-hZo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aRF-i2-HYk">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INL-vh-fRc">
+                                <rect key="frame" x="884" y="827" width="152" height="86"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="playButtonPushed:" destination="VeP-sQ-l6c" eventType="primaryActionTriggered" id="Og3-gJ-GTR"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Episode_Details_Placeholder" adjustsImageWhenAncestorFocused="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yGz-Oh-aft">
+                                <rect key="frame" x="478" y="273" width="964" height="534"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="964" id="5Aw-Q0-W72"/>
+                                    <constraint firstAttribute="height" constant="534" id="QMv-jr-5SL"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Episode Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="EqV-Nh-nfK">
+                                <rect key="frame" x="40" y="162" width="1840" height="91"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="yGz-Oh-aft" firstAttribute="top" secondItem="EqV-Nh-nfK" secondAttribute="bottom" constant="20" id="0mN-dt-IPs"/>
+                            <constraint firstItem="INL-vh-fRc" firstAttribute="top" secondItem="yGz-Oh-aft" secondAttribute="bottom" constant="20" id="1Rw-rU-dkc"/>
+                            <constraint firstItem="EqV-Nh-nfK" firstAttribute="centerX" secondItem="yGz-Oh-aft" secondAttribute="centerX" id="Bmj-44-6SV"/>
+                            <constraint firstItem="yGz-Oh-aft" firstAttribute="centerY" secondItem="aRF-i2-HYk" secondAttribute="centerY" id="J6N-CC-Knj"/>
+                            <constraint firstItem="EqV-Nh-nfK" firstAttribute="leading" secondItem="aRF-i2-HYk" secondAttribute="leadingMargin" constant="20" id="KO3-dX-LWa"/>
+                            <constraint firstItem="yGz-Oh-aft" firstAttribute="centerX" secondItem="aRF-i2-HYk" secondAttribute="centerX" id="Tbz-3d-sHd"/>
+                            <constraint firstItem="INL-vh-fRc" firstAttribute="centerX" secondItem="yGz-Oh-aft" secondAttribute="centerX" id="cK4-2X-HnF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EqV-Nh-nfK" secondAttribute="trailing" constant="20" id="teX-cU-6Wa"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="episodeImageView" destination="yGz-Oh-aft" id="YN6-VE-nyG"/>
+                        <outlet property="episodeTitleLabel" destination="EqV-Nh-nfK" id="Uw2-gs-agL"/>
+                        <outlet property="playButton" destination="INL-vh-fRc" id="hzo-cn-xN5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="um6-Kp-MoU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="321" y="239"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Episode_Details_Placeholder" width="964" height="534"/>
+    </resources>
+</document>
