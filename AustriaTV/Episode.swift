@@ -22,6 +22,7 @@ class Episode: Mappable {
     var date: NSDate?
     var images: [Image]?
     var descriptions: [Description]?
+    var duration: Int?
     
     var episodeType: Type {
         get {
@@ -62,6 +63,7 @@ class Episode: Mappable {
         date <- (map["date"], dateTransform)
         images <- map["images"]
         descriptions <- map["descriptions"]
+        duration <- map["duration"]
     }
     
     // MARK: format output
@@ -128,6 +130,22 @@ class Episode: Mappable {
             }
         }
         
+        return nil
+    }
+    
+    // MARK: duration
+    
+    func getFormatedDuration() -> String? {
+        if let duration = duration {
+            let formatter = NSDateComponentsFormatter()
+            formatter.unitsStyle = .Full
+            
+            let components = NSDateComponents()
+            components.minute = Int(duration / 60)
+            
+            return formatter.stringFromDateComponents(components)
+        }
+
         return nil
     }
 }

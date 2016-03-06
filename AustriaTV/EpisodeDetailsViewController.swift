@@ -15,6 +15,7 @@ class EpisodeDetailsViewController: UIViewController {
     @IBOutlet weak var episodeTitleLabel: UILabel!
     @IBOutlet weak var episodeImageView: UIImageView!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var durationLabel: UILabel!
     
     private let apiManager = ApiManager()
     
@@ -73,6 +74,12 @@ class EpisodeDetailsViewController: UIViewController {
                 }
             } else {
                 episodeImageView.image = placeholderImage
+            }
+            
+            if let duration = episode.getFormatedDuration() {
+                durationLabel.text = duration
+            } else {
+                durationLabel.text = nil
             }
         }
     }

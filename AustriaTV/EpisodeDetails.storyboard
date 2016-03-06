@@ -38,19 +38,28 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99 minutes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quD-0a-ncW">
+                                <rect key="frame" x="478" y="852" width="149" height="35"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="yGz-Oh-aft" firstAttribute="top" secondItem="EqV-Nh-nfK" secondAttribute="bottom" constant="20" id="0mN-dt-IPs"/>
                             <constraint firstItem="INL-vh-fRc" firstAttribute="top" secondItem="yGz-Oh-aft" secondAttribute="bottom" constant="20" id="1Rw-rU-dkc"/>
                             <constraint firstItem="EqV-Nh-nfK" firstAttribute="centerX" secondItem="yGz-Oh-aft" secondAttribute="centerX" id="Bmj-44-6SV"/>
+                            <constraint firstItem="quD-0a-ncW" firstAttribute="leading" secondItem="yGz-Oh-aft" secondAttribute="leading" id="Ekh-gz-qb9"/>
                             <constraint firstItem="yGz-Oh-aft" firstAttribute="centerY" secondItem="aRF-i2-HYk" secondAttribute="centerY" id="J6N-CC-Knj"/>
                             <constraint firstItem="EqV-Nh-nfK" firstAttribute="leading" secondItem="aRF-i2-HYk" secondAttribute="leadingMargin" constant="20" id="KO3-dX-LWa"/>
                             <constraint firstItem="yGz-Oh-aft" firstAttribute="centerX" secondItem="aRF-i2-HYk" secondAttribute="centerX" id="Tbz-3d-sHd"/>
+                            <constraint firstItem="quD-0a-ncW" firstAttribute="centerY" secondItem="INL-vh-fRc" secondAttribute="centerY" id="Y8X-UD-Bhg"/>
                             <constraint firstItem="INL-vh-fRc" firstAttribute="centerX" secondItem="yGz-Oh-aft" secondAttribute="centerX" id="cK4-2X-HnF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="EqV-Nh-nfK" secondAttribute="trailing" constant="20" id="teX-cU-6Wa"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="durationLabel" destination="quD-0a-ncW" id="CVd-mM-yjy"/>
                         <outlet property="episodeImageView" destination="yGz-Oh-aft" id="YN6-VE-nyG"/>
                         <outlet property="episodeTitleLabel" destination="EqV-Nh-nfK" id="Uw2-gs-agL"/>
                         <outlet property="playButton" destination="INL-vh-fRc" id="hzo-cn-xN5"/>
