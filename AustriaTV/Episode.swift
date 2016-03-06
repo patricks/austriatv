@@ -141,7 +141,11 @@ class Episode: Mappable {
             formatter.unitsStyle = .Full
             
             let components = NSDateComponents()
-            components.minute = Int(duration / 60)
+            
+            // set hours, minutes or second
+            components.hour = Int(duration / 3600)
+            components.minute = Int((duration / 60) % 60)
+            components.second = Int(duration % 60)
             
             return formatter.stringFromDateComponents(components)
         }

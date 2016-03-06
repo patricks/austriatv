@@ -19,6 +19,14 @@ class EpisodeDetailsViewController: UIViewController {
     
     private let apiManager = ApiManager()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // reset the labels
+        episodeTitleLabel.text = nil
+        durationLabel.text = nil
+    }
+    
     deinit {
         removeNotifications()
     }
@@ -77,9 +85,9 @@ class EpisodeDetailsViewController: UIViewController {
             }
             
             if let duration = episode.getFormatedDuration() {
-                durationLabel.text = duration
-            } else {
-                durationLabel.text = nil
+                if episode.duration! > 0 {
+                    durationLabel.text = duration
+                }
             }
         }
     }
