@@ -42,10 +42,7 @@ class Episode: Mappable {
         let dateTransform = TransformOf<NSDate, String>(fromJSON: { (value: String?) -> NSDate? in
             // transform value from String? to NSDate?
             if let value = value {
-                // TODO: fix the timezone problem
-                let date = NSDate(fromString: value, format: .Custom("dd.MM.yyyy HH:mm:ss"))
-                // Add the 1 hour form the timezone
-                return date.dateByAddingHours(1)
+                return NSDate(fromString: value, format: .Custom("dd.MM.yyyy HH:mm:ss"), timeZone: .UTC)
             }
             
             return NSDate()

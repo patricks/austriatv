@@ -21,4 +21,5 @@ struct AppConstants {
     static let grey = "808080".hexColor!
     static let red = "E12128".hexColor!
     static let blue = "222149".hexColor!
+    static let lightBlue = "3E8FF4".hexColor!
 }

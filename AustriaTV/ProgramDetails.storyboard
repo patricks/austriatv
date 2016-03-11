@@ -18,30 +18,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageWhenAncestorFocused="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2BB-xv-kkx">
-                                <rect key="frame" x="20" y="0.0" width="535" height="300"/>
+                                <rect key="frame" x="1365" y="8" width="535" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="ZaS-3s-YaB"/>
                                     <constraint firstAttribute="width" constant="535" id="wcA-SI-OA2"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Program Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bkz-bw-g2r">
+                                <rect key="frame" x="20" y="8" width="1337" height="91"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="dKO-eZ-1hh">
-                                <rect key="frame" x="20" y="320" width="1880" height="752"/>
+                                <rect key="frame" x="20" y="328" width="1880" height="744"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Program Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bkz-bw-g2r">
-                                        <rect key="frame" x="0.0" y="0.0" width="1880" height="91"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzH-PW-N36">
+                                        <rect key="frame" x="0.0" y="0.0" width="1880" height="86"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="86" id="Rn3-Q4-P32"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="40" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="tOK-fJ-R1V">
-                                        <rect key="frame" x="0.0" y="103" width="1880" height="649"/>
+                                        <rect key="frame" x="0.0" y="98" width="1880" height="646"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EpisodeCell" id="2Ey-kA-4px">
                                                 <rect key="frame" x="0.0" y="54" width="1880" height="66"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Ey-kA-4px" id="UWl-yP-6ab">
-                                                    <rect key="frame" x="0.0" y="0.0" width="1864" height="66"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="1880" height="66"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                                 <connections>
@@ -58,16 +66,20 @@
                             </stackView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="2BB-xv-kkx" firstAttribute="leading" secondItem="bkz-bw-g2r" secondAttribute="trailing" constant="8" id="15L-mK-bXx"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="bkz-bw-g2r" secondAttribute="leading" id="2Ot-GH-bKx"/>
+                            <constraint firstItem="bkz-bw-g2r" firstAttribute="top" secondItem="oyp-p8-9YY" secondAttribute="bottom" constant="8" id="8uC-Du-dSJ"/>
                             <constraint firstItem="dKO-eZ-1hh" firstAttribute="leading" secondItem="W9H-ed-Tb3" secondAttribute="leadingMargin" id="ILO-Kr-NpD"/>
                             <constraint firstItem="dKO-eZ-1hh" firstAttribute="trailing" secondItem="W9H-ed-Tb3" secondAttribute="trailingMargin" id="Jt4-2r-urE"/>
-                            <constraint firstItem="2BB-xv-kkx" firstAttribute="top" secondItem="oyp-p8-9YY" secondAttribute="bottom" id="KjY-l8-klS"/>
+                            <constraint firstItem="2BB-xv-kkx" firstAttribute="top" secondItem="oyp-p8-9YY" secondAttribute="bottom" constant="8" id="KjY-l8-klS"/>
                             <constraint firstItem="dKO-eZ-1hh" firstAttribute="top" secondItem="2BB-xv-kkx" secondAttribute="bottom" constant="20" id="fLQ-3W-nNF"/>
-                            <constraint firstItem="2BB-xv-kkx" firstAttribute="leading" secondItem="W9H-ed-Tb3" secondAttribute="leadingMargin" id="khl-fg-3FM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2BB-xv-kkx" secondAttribute="trailing" id="gUD-ed-Nz2"/>
                             <constraint firstItem="duv-dM-eZO" firstAttribute="top" secondItem="dKO-eZ-1hh" secondAttribute="bottom" constant="8" symbolic="YES" id="yrF-cA-RcP"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="episodeTableView" destination="tOK-fJ-R1V" id="gLM-X9-Kza"/>
+                        <outlet property="favoriteButton" destination="gzH-PW-N36" id="zKn-i4-tUc"/>
                         <outlet property="programImageView" destination="2BB-xv-kkx" id="viP-am-tCb"/>
                         <outlet property="programNameLabel" destination="bkz-bw-g2r" id="nl4-1S-fOA"/>
                     </connections>

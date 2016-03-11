@@ -14,6 +14,7 @@ class ProgramDetailsViewController: UIViewController {
     @IBOutlet weak var programNameLabel: UILabel!
     @IBOutlet weak var episodeTableView: UITableView!
     @IBOutlet weak var programImageView: UIImageView!
+    @IBOutlet weak var favoriteButton: UIButton!
     
     private let apiManager = ApiManager()
     
@@ -30,6 +31,7 @@ class ProgramDetailsViewController: UIViewController {
         
         // clear the view
         programNameLabel.text = ""
+        favoriteButton.hidden = true
     }
     
     private func setProgram() {
@@ -61,6 +63,9 @@ class ProgramDetailsViewController: UIViewController {
                 }
             })
         }
+    }
+    
+    @IBAction func favoriteButtonPushed(sender: AnyObject) {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
