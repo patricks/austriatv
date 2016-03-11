@@ -79,18 +79,15 @@ class ApiManager {
             Log.debug("Response String: \(response.result.value)")
             */
             
+            .validate()
+            
             .responseObject { (response: Response<TeaserItemsResponse, NSError>) -> Void in
-                if response.result.error == nil {
-                    if let responseValue = response.result.value {
-                        if let items = responseValue.items {
-                            completion(successful: true, teaserItems: items)
-                        } else {
-                            completion(successful: false, teaserItems: nil)
-                        }
-                    } else {
-                        completion(successful: false, teaserItems: nil)
-                    }
-                } else {
+                
+                switch response.result {
+                case .Success(let value):
+                    completion(successful: true, teaserItems: value.items)
+                case .Failure(let error):
+                    Log.debug(error.localizedDescription)
                     completion(successful: false, teaserItems: nil)
                 }
         }
@@ -101,18 +98,16 @@ class ApiManager {
     
     func getEpisode(episodeId: Int, completion: (successful: Bool, episode: Episode?) -> ()) {
         Alamofire.request(APIRequest.Episode(episodeId: episodeId))
+            
+            .validate()
+            
             .responseObject { (response: Response<EpisodeDetailResponse, NSError>) -> Void in
-                if response.result.error == nil {
-                    if let responseValue = response.result.value {
-                        if let episode = responseValue.episode {
-                            completion(successful: true, episode: episode)
-                        } else {
-                            completion(successful: false, episode: nil)
-                        }
-                    } else {
-                        completion(successful: false, episode: nil)
-                    }
-                } else {
+                
+                switch response.result {
+                case .Success(let value):
+                    completion(successful: true, episode: value.episode)
+                case .Failure(let error):
+                    Log.debug(error.localizedDescription)
                     completion(successful: false, episode: nil)
                 }
         }
@@ -120,18 +115,16 @@ class ApiManager {
     
     func getEpisodeByProgram(programId: Int, completion: (successful: Bool, episodes: [Episode]?) -> ()) {
         Alamofire.request(APIRequest.EpisodesByProgram(programId: programId))
+            
+            .validate()
+            
             .responseObject { (response: Response<EpisodeShortsResponse, NSError>) -> Void in
-                if response.result.error == nil {
-                    if let responseValue = response.result.value {
-                        if let episodes = responseValue.episodes {
-                            completion(successful: true, episodes: episodes)
-                        } else {
-                            completion(successful: false, episodes: nil)
-                        }
-                    } else {
-                        completion(successful: false, episodes: nil)
-                    }
-                } else {
+                
+                switch response.result {
+                case .Success(let value):
+                    completion(successful: true, episodes: value.episodes)
+                case .Failure(let error):
+                    Log.debug(error.localizedDescription)
                     completion(successful: false, episodes: nil)
                 }
         }
@@ -141,18 +134,16 @@ class ApiManager {
     
     func getPrograms(completion: (successful: Bool, programs: [Program]?) -> ()) {
         Alamofire.request(APIRequest.Programs())
+            
+            .validate()
+            
             .responseObject { (response: Response<ProgramShortsResponse, NSError>) -> Void in
-                if response.result.error == nil {
-                    if let responseValue = response.result.value {
-                        if let programs = responseValue.programs {
-                            completion(successful: true, programs: programs)
-                        } else {
-                            completion(successful: false, programs: nil)
-                        }
-                    } else {
-                        completion(successful: false, programs: nil)
-                    }
-                } else {
+                
+                switch response.result {
+                case .Success(let value):
+                    completion(successful: true, programs: value.programs)
+                case .Failure(let error):
+                    Log.debug(error.localizedDescription)
                     completion(successful: false, programs: nil)
                 }
             }
