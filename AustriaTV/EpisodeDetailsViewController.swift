@@ -99,7 +99,7 @@ class EpisodeDetailsViewController: UIViewController {
     }
     
     func playerDidFinishPlaying(notification: NSNotification) {
-        Log.debug(__FUNCTION__)
+        Log.debug(#function)
         self.dismissViewControllerAnimated(true) { () -> Void in
             Log.debug("Back from player view")
         }
@@ -199,7 +199,7 @@ class EpisodeDetailsViewController: UIViewController {
         
         // get notification if last segment has finished playing
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "playerDidFinishPlaying:",
+            selector: #selector(EpisodeDetailsViewController.playerDidFinishPlaying(_:)),
             name: AVPlayerItemDidPlayToEndTimeNotification,
             object: player.items().last)
         
