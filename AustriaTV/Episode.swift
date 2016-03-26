@@ -11,9 +11,14 @@ import ObjectMapper
 
 class Episode: Mappable {
     
-    enum Type {
+    internal enum Type {
         case Short
         case Detail
+    }
+    
+    enum PublishState: String {
+        case Online = "online"
+        case Offline = "offline"
     }
     
     var episodeId: Int?
@@ -23,6 +28,8 @@ class Episode: Mappable {
     var images: [Image]?
     var descriptions: [Description]?
     var duration: Int?
+    var channel: Channel?
+    var publishState: PublishState?
     
     var episodeType: Type {
         get {
@@ -61,6 +68,8 @@ class Episode: Mappable {
         images <- map["images"]
         descriptions <- map["descriptions"]
         duration <- map["duration"]
+        channel <- map["channel"]
+        publishState <- (map["publishState"], EnumTransform<PublishState>())
     }
     
     // MARK: format output
@@ -185,5 +194,20 @@ class Description: Mappable {
         fieldName <- map["fieldName"]
         text <- map["text"]
         maxLength <- map["maxLength"]
+    }
+}
+
+class Channel: Mappable {
+    
+    var channelId: Int?
+    var name: String?
+    var reel: String?
+    
+    required init?(_ map: Map) { }
+    
+    func mapping(map: Map) {
+        channelId <- map["channelId"]
+        name <- map["name"]
+        reel <- map["reel"]
     }
 }

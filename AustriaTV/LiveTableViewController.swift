@@ -14,6 +14,8 @@ class LiveTableViewController: UITableViewController {
     private let apiManager = ApiManager()
     
     private var episodes = [Episode]()
+    private var channels = [String: [Episode]]()
+    private var sortedChannels = [(String, [Episode])]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +34,47 @@ class LiveTableViewController: UITableViewController {
                 if let _ = episodes {
                     self.episodes = episodes!
                     
-                    //self.sortPrograms()
+                    self.getChannels()
                     
                     self.tableView.reloadData()
                 }
             }
         }
+    }
+    
+    private func getChannels() {
+        
+        for episode in episodes {
+            if let channelName = episode.channel?.name {
+                
+                if channels[channelName] == nil {
+                   channels[channelName] = [Episode]()
+                }
+                
+                channels[channelName]?.append(episode)
+            }
+            
+            // add episode to online channel if it is currently online
+            
+            if let publishState = episode.publishState {
+                if publishState == Episode.PublishState.Online {
+                    
+                    let onlineChannelName = NSLocalizedString("Currently Available", comment: "Online Episodes Channel Name")
+                    
+                    if channels[onlineChannelName] == nil {
+                        channels[onlineChannelName] = [Episode]()
+                    }
+                    
+                    channels[onlineChannelName]?.append(episode)
+                }
+            }
+        }
+        
+        sortChannels()
+    }
+    
+    private func sortChannels() {
+        sortedChannels = channels.sort { $0.0 < $1.0 }
     }
 }
 
@@ -45,16 +82,50 @@ class LiveTableViewController: UITableViewController {
 
 extension LiveTableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return episodes.count
+        return sortedChannels.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("EpisodeCell", forIndexPath: indexPath)
         
-        let episode = episodes[indexPath.row]
+        let channel = sortedChannels[indexPath.row]
         
-        cell.textLabel?.text = episode.title
+        cell.textLabel?.text = channel.0
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didUpdateFocusInContext context: UITableViewFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
+        guard let nextFocusedView = context.nextFocusedView where nextFocusedView.isDescendantOfView(tableView) else { return }
+        guard let indexPath = context.nextFocusedIndexPath else { return }
+        
+        let channel = sortedChannels[indexPath.row]
+        
+        for episode in channel.1 {
+            
+            Log.debug("title: \(episode.title) state: \(episode.publishState)")
+        }
+        
+     
+        /*
+        delayedSeguesOperationQueue.cancelAllOperations()
+        
+        let performSegueOperation = NSBlockOperation()
+        
+        performSegueOperation.addExecutionBlock { [weak self] in
+            // Pause the block so the segue isn't immediately performed.
+            NSThread.sleepForTimeInterval(ProgramsTableViewController.performSegueDelay)
+            
+            guard !performSegueOperation.cancelled else { return }
+            
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                if let program = self?.programs[indexPath.row] {
+                    self?.setupDetailsViewWithProgram(program)
+                }
+            }
+        }
+        
+        delayedSeguesOperationQueue.addOperation(performSegueOperation)
+        */
     }
 }
