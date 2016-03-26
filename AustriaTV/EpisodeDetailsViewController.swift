@@ -57,7 +57,7 @@ class EpisodeDetailsViewController: UIViewController {
     private func updateEpisodeDetails() {
         if let episode = episode {
             if let episodeId = episode.episodeId {
-                apiManager.getEpisode(episodeId, completion: { (successful, episode) -> () in
+                apiManager.getEpisode(episodeId, completion: { (successful, episode) in
                     if successful {
                         if let _ = episode {
                             self.episode = episode!

@@ -37,6 +37,7 @@ class ProgramDetailsViewController: UIViewController {
     private func setProgram() {
         if let program = program {
             programNameLabel.text = program.name
+            favoriteButton.hidden = false
             
             let placeholderImage = UIImage(named: "Episode_Details_Placeholder")
             
@@ -54,7 +55,8 @@ class ProgramDetailsViewController: UIViewController {
     
     private func getDataFromServer() {
         if let programId = program?.programId {
-            apiManager.getEpisodeByProgram(programId, completion: { (successful, episodes) -> () in
+            
+            apiManager.getEpisodeByProgram(programId, completion: { (successful, episodes) in
                 if successful {
                     if let _ = episodes {
                         self.episodes = episodes!
@@ -66,6 +68,7 @@ class ProgramDetailsViewController: UIViewController {
     }
     
     @IBAction func favoriteButtonPushed(sender: AnyObject) {
+        // TODO: add to favorite programs
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

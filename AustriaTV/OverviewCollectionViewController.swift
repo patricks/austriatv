@@ -29,7 +29,7 @@ class OverviewCollectionViewController: UICollectionViewController {
     private func getDataFromServer() {
         
         // highlights
-        apiManager.getHighlights { (successful, teaserItems) -> () in
+        apiManager.getHighlights { (successful, teaserItems) in
             if successful {
                 if let _ = teaserItems {
                     self.teasers[TeaserCategory.Hightlights.hashValue] = teaserItems!
@@ -39,7 +39,7 @@ class OverviewCollectionViewController: UICollectionViewController {
         }
         
         // newest
-        apiManager.getNewest { (successful, teaserItems) -> () in
+        apiManager.getNewest { (successful, teaserItems) in
             if successful {
                 if let _ = teaserItems {
                     self.teasers[TeaserCategory.Newest.hashValue] = teaserItems!
@@ -49,7 +49,7 @@ class OverviewCollectionViewController: UICollectionViewController {
         }
         
         // most viewed
-        apiManager.getMostViewed { (successful, teaserItems) -> () in
+        apiManager.getMostViewed { (successful, teaserItems) in
             if successful {
                 if let _ = teaserItems {
                     self.teasers[TeaserCategory.MostViewed.hashValue] = teaserItems!
@@ -59,7 +59,7 @@ class OverviewCollectionViewController: UICollectionViewController {
         }
         
         // recommended
-        apiManager.getRecommended { (successful, teaserItems) -> () in
+        apiManager.getRecommended { (successful, teaserItems) in
             if successful {
                 if let _ = teaserItems {
                     self.teasers[TeaserCategory.Recommendations.hashValue] = teaserItems!

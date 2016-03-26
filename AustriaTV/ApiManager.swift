@@ -148,4 +148,23 @@ class ApiManager {
                 }
             }
     }
+    
+    // MARK: Livestream API Calls
+    
+    func getLivestreams(completion: (successful: Bool, episodes: [Episode]?) -> ()) {
+        Alamofire.request(APIRequest.Livestreams())
+        
+            .validate()
+        
+            .responseObject { (response: Response<EpisodeDetailsResponse, NSError>) -> Void in
+                
+                switch response.result {
+                case .Success(let value):
+                    completion(successful: true, episodes: value.episodes)
+                case .Failure(let error):
+                    Log.debug(error.localizedDescription)
+                    completion(successful: false,episodes: nil)
+                }
+            }
+    }
 }

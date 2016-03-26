@@ -28,7 +28,7 @@ class ProgramsTableViewController: UITableViewController {
     // MARK: Data Source
     
     private func getDataFromServer() {
-        apiManager.getPrograms { (successful, programs) -> () in
+        apiManager.getPrograms { (successful, programs) in
             if successful {
                 if let _ = programs {
                     self.programs = programs!
@@ -61,10 +61,6 @@ class ProgramsTableViewController: UITableViewController {
 // MARK: - Table view data source
 
 extension ProgramsTableViewController {
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return programs.count
     }

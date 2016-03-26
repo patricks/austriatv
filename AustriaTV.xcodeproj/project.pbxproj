@@ -31,6 +31,8 @@
 		CD039DBB1C82DC74009F2BF2 /* EpisodeDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD039DBA1C82DC74009F2BF2 /* EpisodeDetails.storyboard */; };
 		CD039DBD1C836288009F2BF2 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD039DBC1C836288009F2BF2 /* Kingfisher.framework */; };
 		CD039DC01C83732A009F2BF2 /* AFDateExtension+NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD039DBF1C83732A009F2BF2 /* AFDateExtension+NSDate.swift */; };
+		CD1CD25B1CA680E000B74CE5 /* EpisodeDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1CD25A1CA680E000B74CE5 /* EpisodeDetailsResponse.swift */; };
+		CD1CD25D1CA6885B00B74CE5 /* LiveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1CD25C1CA6885B00B74CE5 /* LiveTableViewController.swift */; };
 		CD715FC11C8C9A2C00097F7A /* Mopius+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD715FC01C8C9A2C00097F7A /* Mopius+String.swift */; };
 		CDE2F4561C8B262100731DDF /* OverviewCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE2F4551C8B262100731DDF /* OverviewCollectionViewController.swift */; };
 		CDE2F4581C8B288600731DDF /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE2F4571C8B288600731DDF /* Image.swift */; };
@@ -66,6 +68,8 @@
 		CD039DBA1C82DC74009F2BF2 /* EpisodeDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EpisodeDetails.storyboard; sourceTree = "<group>"; };
 		CD039DBC1C836288009F2BF2 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/tvOS/Kingfisher.framework; sourceTree = "<group>"; };
 		CD039DBF1C83732A009F2BF2 /* AFDateExtension+NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AFDateExtension+NSDate.swift"; sourceTree = "<group>"; };
+		CD1CD25A1CA680E000B74CE5 /* EpisodeDetailsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeDetailsResponse.swift; sourceTree = "<group>"; };
+		CD1CD25C1CA6885B00B74CE5 /* LiveTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveTableViewController.swift; sourceTree = "<group>"; };
 		CD715FC01C8C9A2C00097F7A /* Mopius+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mopius+String.swift"; sourceTree = "<group>"; };
 		CDE2F4551C8B262100731DDF /* OverviewCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverviewCollectionViewController.swift; sourceTree = "<group>"; };
 		CDE2F4571C8B288600731DDF /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 			children = (
 				CD039D931C80AA8E009F2BF2 /* TeaserItemsResponse.swift */,
 				CD039DA01C80B44B009F2BF2 /* EpisodeDetailResponse.swift */,
+				CD1CD25A1CA680E000B74CE5 /* EpisodeDetailsResponse.swift */,
 				CD039DA21C819FD8009F2BF2 /* ProgramShortsResponse.swift */,
 				CD039DAA1C81A85D009F2BF2 /* EpisodeShortsResponse.swift */,
 			);
@@ -182,6 +187,7 @@
 				CD039DB51C81B733009F2BF2 /* Overview */,
 				CD039DB41C81B71F009F2BF2 /* Programs */,
 				CD039DB91C82DC14009F2BF2 /* Episodes */,
+				CD1CD25E1CA6886000B74CE5 /* Live */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -220,6 +226,14 @@
 				CD715FC01C8C9A2C00097F7A /* Mopius+String.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		CD1CD25E1CA6886000B74CE5 /* Live */ = {
+			isa = PBXGroup;
+			children = (
+				CD1CD25C1CA6885B00B74CE5 /* LiveTableViewController.swift */,
+			);
+			name = Live;
 			sourceTree = "<group>";
 		};
 		CDE2F45B1C8B295000731DDF /* Views */ = {
@@ -339,11 +353,13 @@
 				CD039DA31C819FD8009F2BF2 /* ProgramShortsResponse.swift in Sources */,
 				CDE2F4581C8B288600731DDF /* Image.swift in Sources */,
 				CDE2F45F1C8B3D7900731DDF /* TeaserCategory.swift in Sources */,
+				CD1CD25D1CA6885B00B74CE5 /* LiveTableViewController.swift in Sources */,
 				CD039D6E1C8099C9009F2BF2 /* AppDelegate.swift in Sources */,
 				CD039DA51C81A038009F2BF2 /* Program.swift in Sources */,
 				CD039D891C809DBA009F2BF2 /* ApiRequest.swift in Sources */,
 				CD039D961C80AB32009F2BF2 /* Teaser.swift in Sources */,
 				CD715FC11C8C9A2C00097F7A /* Mopius+String.swift in Sources */,
+				CD1CD25B1CA680E000B74CE5 /* EpisodeDetailsResponse.swift in Sources */,
 				CDE2F45D1C8B3B8F00731DDF /* OverviewCollectionHeaderView.swift in Sources */,
 				CD039D871C809CE1009F2BF2 /* AppConstants.swift in Sources */,
 			);

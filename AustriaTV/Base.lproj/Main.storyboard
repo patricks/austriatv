@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="WKo-hV-S7n">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="WKo-hV-S7n">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
@@ -18,6 +18,7 @@
                     <connections>
                         <segue destination="Qhq-WU-84n" kind="relationship" relationship="viewControllers" id="loO-7m-eZK"/>
                         <segue destination="Ge3-X7-7IZ" kind="relationship" relationship="viewControllers" id="ZaH-Xi-Gco"/>
+                        <segue destination="k3Q-i5-S7S" kind="relationship" relationship="viewControllers" id="pgu-nI-VRy"/>
                     </connections>
                 </tabBarController>
             </objects>
@@ -30,9 +31,11 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="40" sectionFooterHeight="40" id="mHU-yF-SQt">
                         <rect key="frame" x="0.0" y="0.0" width="634" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.1333333333" green="0.12941176469999999" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.1333333333" green="0.12941176469999999" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProgramCell" id="Tjs-fs-t06">
-                                <rect key="frame" x="0.0" y="199" width="594" height="66"/>
+                                <rect key="frame" x="0.0" y="199" width="634" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tjs-fs-t06" id="uLE-bw-FYL">
                                     <rect key="frame" x="0.0" y="0.0" width="618" height="66"/>
@@ -103,11 +106,11 @@
                             <size key="itemSize" width="308" height="240"/>
                             <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="50" minY="25" maxX="50" maxY="25"/>
+                            <inset key="sectionInset" minX="90" minY="25" maxX="90" maxY="25"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TeaserCell" id="7r6-Cb-13C" customClass="TeaserCollectionViewCell" customModule="AustriaTV" customModuleProvider="target">
-                                <rect key="frame" x="50" y="220" width="308" height="240"/>
+                                <rect key="frame" x="90" y="220" width="308" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="308" height="240"/>
@@ -149,14 +152,14 @@
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ohy-KN-hn7">
-                                    <rect key="frame" x="16" y="2" width="93" height="46"/>
+                                    <rect key="frame" x="90" y="2" width="93" height="46"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="Ohy-KN-hn7" firstAttribute="leading" secondItem="KmH-qd-U3W" secondAttribute="leading" constant="16" id="ky6-qe-0rE"/>
+                                <constraint firstItem="Ohy-KN-hn7" firstAttribute="leading" secondItem="KmH-qd-U3W" secondAttribute="leading" constant="90" id="ky6-qe-0rE"/>
                                 <constraint firstItem="Ohy-KN-hn7" firstAttribute="centerY" secondItem="KmH-qd-U3W" secondAttribute="centerY" id="yF4-cI-3On"/>
                             </constraints>
                             <connections>
@@ -181,6 +184,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NDJ-SS-zFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3347" y="486"/>
+        </scene>
+        <!--Live Table View Controller-->
+        <scene sceneID="C1o-lX-Gmy">
+            <objects>
+                <tableViewController id="BL1-dd-OuX" customClass="LiveTableViewController" customModule="AustriaTV" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="40" sectionFooterHeight="40" id="HSc-i2-f4Q">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EpisodeCell" id="wwb-SE-rdi">
+                                <rect key="frame" x="0.0" y="199" width="1920" height="66"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wwb-SE-rdi" id="WHP-0o-rGP">
+                                    <rect key="frame" x="0.0" y="0.0" width="1904" height="66"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="BL1-dd-OuX" id="du6-LG-B9Z"/>
+                            <outlet property="delegate" destination="BL1-dd-OuX" id="tlt-dm-agc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="57R-GS-Msn"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7gq-CT-JL2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2238" y="4945"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zfV-NE-Lvh">
@@ -218,6 +249,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NLy-9c-gD6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-158" y="486"/>
+        </scene>
+        <!--Live-->
+        <scene sceneID="6l0-2U-aHe">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="k3Q-i5-S7S" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Live" id="r36-dG-Zej"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KCB-GA-kTp">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BL1-dd-OuX" kind="relationship" relationship="rootViewController" id="QF0-xQ-MQx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Y1-SA-i5l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="106" y="4945"/>
         </scene>
     </scenes>
     <resources>

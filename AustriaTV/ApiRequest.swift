@@ -25,6 +25,9 @@ enum APIRequest: URLRequestConvertible {
     // Programs
     case Programs()
     
+    // Livestreams
+    case Livestreams()
+    
     var URLRequest: NSMutableURLRequest {
         let result: (path: String, parameters: [String: AnyObject]?, httpMethod: String) = {
             
@@ -50,6 +53,14 @@ enum APIRequest: URLRequestConvertible {
             case .Programs():
                 let params = ["page": "\(0)", "entries_per_page": "\(1000)"]
                 return ("\(AppConstants.baseApiPath)/programs", params, "GET")
+                
+            case .Livestreams():
+                let now = NSDate()
+                
+                let startTime = now.toString(format: .Custom("yyyyMMddHHmm"))
+                let endTime = now.dateByAddingDays(1).toString(format: .Custom("yyyyMMddHHmm"))
+                
+                return ("\(AppConstants.baseApiPath)/livestreams/from/\(startTime)/till/\(endTime)/detail", nil, "GET")
             }
         }()
         
