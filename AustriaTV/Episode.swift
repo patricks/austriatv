@@ -21,6 +21,11 @@ class Episode: Mappable {
         case Offline = "offline"
     }
     
+    enum EpisodeType: String {
+        case videoOnDemand = "vod"
+        case livestream = "livestream"
+    }
+    
     var episodeId: Int?
     var title: String?
     var segments: [Segment]?
@@ -30,10 +35,12 @@ class Episode: Mappable {
     var duration: Int?
     var channel: Channel?
     var publishState: PublishState?
+    var episodeType: EpisodeType?
     var liveStreamStart: NSDate?
     var liveStreamEnd: NSDate?
+    var livestreamingURLs: [Video]?
     
-    var episodeType: Type {
+    var type: Type {
         get {
             // if segments property is set, details already loaded
             if let _ = self.segments {
@@ -72,8 +79,10 @@ class Episode: Mappable {
         duration <- map["duration"]
         channel <- map["channel"]
         publishState <- (map["publishState"], EnumTransform<PublishState>())
+        episodeType <- (map["episodeType"], EnumTransform<EpisodeType>())
         liveStreamStart <- (map["livestreamStart"], dateTransform)
         liveStreamEnd <- (map["livestreamEnd"], dateTransform)
+        livestreamingURLs <- map["livestreamStreamingUrls"]
     }
     
     // MARK: format output
@@ -96,7 +105,17 @@ class Episode: Mappable {
     // MARK: images
     
     func getFullImageURL() -> NSURL? {
-        return getImageURL("image_full")
+        
+        if let episodeType = self.episodeType {
+            switch episodeType {
+            case .videoOnDemand:
+                return getImageURL("image_full")
+            case .livestream:
+                return getImageURL("logo")
+            }
+        }
+        
+        return nil
     }
     
     func getPreviewImageURL() -> NSURL? {
@@ -167,7 +186,11 @@ class Episode: Mappable {
         return nil
     }
     
-    // MARK: live stream
+    // MARK: video stream
+    
+    func getVideoStreamURL() -> NSURL? {
+        return nil
+    }
     
     func isLiveStreamOnline() -> Bool {
         if let liveStreamStart = liveStreamStart, liveStreamEnd = liveStreamEnd {
@@ -179,57 +202,5 @@ class Episode: Mappable {
         }
         
         return false
-    }
-}
-
-class Segment: Mappable {
-    
-    var videos: [Video]?
-    
-    required init?(_ map: Map) { }
-    
-    func mapping(map: Map) {
-        videos <- map["videos"]
-    }
-}
-
-class Video: Mappable {
-    
-    var streamingURL: String?
-    
-    required init?(_ map: Map) { }
-    
-    func mapping(map: Map) {
-        streamingURL <- map["streamingUrl"]
-    }
-}
-
-class Description: Mappable {
-    
-    var fieldName: String?
-    var text: String?
-    var maxLength: Int?
-    
-    required init?(_ map: Map) { }
-    
-    func mapping(map: Map) {
-        fieldName <- map["fieldName"]
-        text <- map["text"]
-        maxLength <- map["maxLength"]
-    }
-}
-
-class Channel: Mappable {
-    
-    var channelId: Int?
-    var name: String?
-    var reel: String?
-    
-    required init?(_ map: Map) { }
-    
-    func mapping(map: Map) {
-        channelId <- map["channelId"]
-        name <- map["name"]
-        reel <- map["reel"]
     }
 }

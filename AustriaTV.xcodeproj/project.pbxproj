@@ -32,12 +32,15 @@
 		CD039DBD1C836288009F2BF2 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD039DBC1C836288009F2BF2 /* Kingfisher.framework */; };
 		CD039DC01C83732A009F2BF2 /* AFDateExtension+NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD039DBF1C83732A009F2BF2 /* AFDateExtension+NSDate.swift */; };
 		CD1CD25B1CA680E000B74CE5 /* EpisodeDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1CD25A1CA680E000B74CE5 /* EpisodeDetailsResponse.swift */; };
-		CD1CD25D1CA6885B00B74CE5 /* LiveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1CD25C1CA6885B00B74CE5 /* LiveTableViewController.swift */; };
 		CD1CD2601CA6AFFA00B74CE5 /* LiveCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1CD25F1CA6AFFA00B74CE5 /* LiveCollectionViewController.swift */; };
 		CD715FC11C8C9A2C00097F7A /* Mopius+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD715FC01C8C9A2C00097F7A /* Mopius+String.swift */; };
 		CDDBB3ED1CAE8494009E755E /* Live.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDDBB3EC1CAE8494009E755E /* Live.storyboard */; };
 		CDDBB3EF1CAE8720009E755E /* Overview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDDBB3EE1CAE8720009E755E /* Overview.storyboard */; };
 		CDDBB3F11CAE9312009E755E /* Patricks+NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDBB3F01CAE9312009E755E /* Patricks+NSDate.swift */; };
+		CDDBB3F71CAE9C5D009E755E /* Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDBB3F61CAE9C5D009E755E /* Segment.swift */; };
+		CDDBB3F91CAE9C95009E755E /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDBB3F81CAE9C95009E755E /* Video.swift */; };
+		CDDBB3FC1CAE9CEF009E755E /* Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDBB3FB1CAE9CEF009E755E /* Description.swift */; };
+		CDDBB3FE1CAE9D17009E755E /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDBB3FD1CAE9D17009E755E /* Channel.swift */; };
 		CDE2F4561C8B262100731DDF /* OverviewCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE2F4551C8B262100731DDF /* OverviewCollectionViewController.swift */; };
 		CDE2F4581C8B288600731DDF /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE2F4571C8B288600731DDF /* Image.swift */; };
 		CDE2F45A1C8B294900731DDF /* TeaserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE2F4591C8B294900731DDF /* TeaserCollectionViewCell.swift */; };
@@ -73,12 +76,15 @@
 		CD039DBC1C836288009F2BF2 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/tvOS/Kingfisher.framework; sourceTree = "<group>"; };
 		CD039DBF1C83732A009F2BF2 /* AFDateExtension+NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AFDateExtension+NSDate.swift"; sourceTree = "<group>"; };
 		CD1CD25A1CA680E000B74CE5 /* EpisodeDetailsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeDetailsResponse.swift; sourceTree = "<group>"; };
-		CD1CD25C1CA6885B00B74CE5 /* LiveTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveTableViewController.swift; sourceTree = "<group>"; };
 		CD1CD25F1CA6AFFA00B74CE5 /* LiveCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCollectionViewController.swift; sourceTree = "<group>"; };
 		CD715FC01C8C9A2C00097F7A /* Mopius+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mopius+String.swift"; sourceTree = "<group>"; };
 		CDDBB3EC1CAE8494009E755E /* Live.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Live.storyboard; sourceTree = "<group>"; };
 		CDDBB3EE1CAE8720009E755E /* Overview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Overview.storyboard; sourceTree = "<group>"; };
 		CDDBB3F01CAE9312009E755E /* Patricks+NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Patricks+NSDate.swift"; sourceTree = "<group>"; };
+		CDDBB3F61CAE9C5D009E755E /* Segment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
+		CDDBB3F81CAE9C95009E755E /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		CDDBB3FB1CAE9CEF009E755E /* Description.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Description.swift; sourceTree = "<group>"; };
+		CDDBB3FD1CAE9D17009E755E /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		CDE2F4551C8B262100731DDF /* OverviewCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverviewCollectionViewController.swift; sourceTree = "<group>"; };
 		CDE2F4571C8B288600731DDF /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		CDE2F4591C8B294900731DDF /* TeaserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeaserCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -160,11 +166,10 @@
 			children = (
 				CD039D981C80ADB9009F2BF2 /* Request */,
 				CD039D991C80ADC1009F2BF2 /* Response */,
+				CDDBB3FA1CAE9CB0009E755E /* Sub Models */,
 				CD039D951C80AB32009F2BF2 /* Teaser.swift */,
-				CDE2F45E1C8B3D7900731DDF /* TeaserCategory.swift */,
 				CD039D9E1C80B3D9009F2BF2 /* Episode.swift */,
 				CD039DA41C81A038009F2BF2 /* Program.swift */,
-				CDE2F4571C8B288600731DDF /* Image.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -241,11 +246,23 @@
 		CD1CD25E1CA6886000B74CE5 /* Live */ = {
 			isa = PBXGroup;
 			children = (
-				CD1CD25C1CA6885B00B74CE5 /* LiveTableViewController.swift */,
 				CD1CD25F1CA6AFFA00B74CE5 /* LiveCollectionViewController.swift */,
 				CDDBB3EC1CAE8494009E755E /* Live.storyboard */,
 			);
 			name = Live;
+			sourceTree = "<group>";
+		};
+		CDDBB3FA1CAE9CB0009E755E /* Sub Models */ = {
+			isa = PBXGroup;
+			children = (
+				CDE2F45E1C8B3D7900731DDF /* TeaserCategory.swift */,
+				CDE2F4571C8B288600731DDF /* Image.swift */,
+				CDDBB3F61CAE9C5D009E755E /* Segment.swift */,
+				CDDBB3F81CAE9C95009E755E /* Video.swift */,
+				CDDBB3FB1CAE9CEF009E755E /* Description.swift */,
+				CDDBB3FD1CAE9D17009E755E /* Channel.swift */,
+			);
+			name = "Sub Models";
 			sourceTree = "<group>";
 		};
 		CDE2F45B1C8B295000731DDF /* Views */ = {
@@ -355,6 +372,7 @@
 				CDE2F45A1C8B294900731DDF /* TeaserCollectionViewCell.swift in Sources */,
 				CD039DA11C80B44B009F2BF2 /* EpisodeDetailResponse.swift in Sources */,
 				CD039DA91C81A145009F2BF2 /* ProgramsTableViewController.swift in Sources */,
+				CDDBB3F71CAE9C5D009E755E /* Segment.swift in Sources */,
 				CD039DB11C81AF1B009F2BF2 /* ProgramDetailsViewController.swift in Sources */,
 				CD039DC01C83732A009F2BF2 /* AFDateExtension+NSDate.swift in Sources */,
 				CD039D851C809C99009F2BF2 /* ApiManager.swift in Sources */,
@@ -363,18 +381,20 @@
 				CD039DB81C82DC0F009F2BF2 /* EpisodeDetailsViewController.swift in Sources */,
 				CDE2F4561C8B262100731DDF /* OverviewCollectionViewController.swift in Sources */,
 				CD039D941C80AA8E009F2BF2 /* TeaserItemsResponse.swift in Sources */,
+				CDDBB3FC1CAE9CEF009E755E /* Description.swift in Sources */,
 				CD039DAB1C81A85D009F2BF2 /* EpisodeShortsResponse.swift in Sources */,
 				CD039DA31C819FD8009F2BF2 /* ProgramShortsResponse.swift in Sources */,
 				CDE2F4581C8B288600731DDF /* Image.swift in Sources */,
 				CDE2F45F1C8B3D7900731DDF /* TeaserCategory.swift in Sources */,
-				CD1CD25D1CA6885B00B74CE5 /* LiveTableViewController.swift in Sources */,
 				CD039D6E1C8099C9009F2BF2 /* AppDelegate.swift in Sources */,
 				CD039DA51C81A038009F2BF2 /* Program.swift in Sources */,
 				CD039D891C809DBA009F2BF2 /* ApiRequest.swift in Sources */,
 				CD039D961C80AB32009F2BF2 /* Teaser.swift in Sources */,
+				CDDBB3FE1CAE9D17009E755E /* Channel.swift in Sources */,
 				CD715FC11C8C9A2C00097F7A /* Mopius+String.swift in Sources */,
 				CDDBB3F11CAE9312009E755E /* Patricks+NSDate.swift in Sources */,
 				CD1CD25B1CA680E000B74CE5 /* EpisodeDetailsResponse.swift in Sources */,
+				CDDBB3F91CAE9C95009E755E /* Video.swift in Sources */,
 				CDE2F45D1C8B3B8F00731DDF /* OverviewCollectionHeaderView.swift in Sources */,
 				CD1CD2601CA6AFFA00B74CE5 /* LiveCollectionViewController.swift in Sources */,
 				CD039D871C809CE1009F2BF2 /* AppConstants.swift in Sources */,

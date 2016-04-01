@@ -42,7 +42,7 @@ class EpisodeDetailsViewController: UIViewController {
     private func setEpisode() {
         if let episode = episode {
             // load details if not already loaded
-            switch episode.episodeType {
+            switch episode.type {
             case .Short:
                 updateEpisodeDetails()
             case .Detail:
