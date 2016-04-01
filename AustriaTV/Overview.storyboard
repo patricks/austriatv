@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="KQA-0L-dPE">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Overview Collection View Controller-->
+        <scene sceneID="rrM-Pu-VvA">
+            <objects>
+                <collectionViewController id="yfY-qH-pxQ" customClass="OverviewCollectionViewController" customModule="AustriaTV" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="zCs-Hn-umv">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.1333333333" green="0.12941176469999999" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="50" minimumInteritemSpacing="50" id="JBS-uU-5fg">
+                            <size key="itemSize" width="308" height="240"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="90" minY="25" maxX="90" maxY="25"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TeaserCell" id="dw0-Fb-Hkq" customClass="TeaserCollectionViewCell" customModule="AustriaTV" customModuleProvider="target">
+                                <rect key="frame" x="90" y="220" width="308" height="240"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="308" height="240"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Overview_Placeholder" adjustsImageWhenAncestorFocused="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aJ5-vC-Fs0">
+                                            <rect key="frame" x="0.0" y="0.0" width="308" height="180"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="180" id="y2c-en-Ogt"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000001192092896" translatesAutoresizingMaskIntoConstraints="NO" id="Cj5-t4-Xav">
+                                            <rect key="frame" x="0.0" y="188" width="308" height="52"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Cj5-t4-Xav" secondAttribute="bottom" id="4w9-W7-GOT"/>
+                                    <constraint firstAttribute="trailing" secondItem="aJ5-vC-Fs0" secondAttribute="trailing" id="A6o-X5-dQS"/>
+                                    <constraint firstAttribute="trailing" secondItem="Cj5-t4-Xav" secondAttribute="trailing" id="KRH-R2-W4T"/>
+                                    <constraint firstItem="Cj5-t4-Xav" firstAttribute="top" secondItem="aJ5-vC-Fs0" secondAttribute="bottom" constant="8" id="PNT-Ex-buH"/>
+                                    <constraint firstItem="aJ5-vC-Fs0" firstAttribute="top" secondItem="dw0-Fb-Hkq" secondAttribute="top" id="Sln-9O-Mpc"/>
+                                    <constraint firstItem="Cj5-t4-Xav" firstAttribute="leading" secondItem="dw0-Fb-Hkq" secondAttribute="leading" id="XMY-kS-eYG"/>
+                                    <constraint firstItem="aJ5-vC-Fs0" firstAttribute="leading" secondItem="dw0-Fb-Hkq" secondAttribute="leading" id="cB7-w1-RNL"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="teaserImageView" destination="aJ5-vC-Fs0" id="uoR-Oe-4VU"/>
+                                    <outlet property="teaserTitle" destination="Cj5-t4-Xav" id="Toc-jO-nuz"/>
+                                    <segue destination="Foa-pV-ggm" kind="presentation" identifier="ShowEpisode" id="AOt-Ad-6bb"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TeaserHeader" id="3nr-qZ-Ydi" customClass="OverviewCollectionHeaderView" customModule="AustriaTV" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="145" width="1920" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKa-QH-MBv">
+                                    <rect key="frame" x="90" y="2" width="93" height="46"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="OKa-QH-MBv" firstAttribute="leading" secondItem="3nr-qZ-Ydi" secondAttribute="leading" constant="90" id="2LA-Es-0LW"/>
+                                <constraint firstItem="OKa-QH-MBv" firstAttribute="centerY" secondItem="3nr-qZ-Ydi" secondAttribute="centerY" id="FT2-6r-are"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="titleLabel" destination="OKa-QH-MBv" id="UnE-gU-xhG"/>
+                            </connections>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="yfY-qH-pxQ" id="owl-Zi-OsS"/>
+                            <outlet property="delegate" destination="yfY-qH-pxQ" id="DiF-XI-gf4"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="r2w-JT-rdr"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PsA-Ng-VnG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1974" y="-806"/>
+        </scene>
+        <!--EpisodeDetails-->
+        <scene sceneID="sY9-0R-rPf">
+            <objects>
+                <viewControllerPlaceholder storyboardName="EpisodeDetails" referencedIdentifier="EpisodeDetails" id="Foa-pV-ggm" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MJZ-TQ-aee" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3347" y="-806"/>
+        </scene>
+        <!--Overview-->
+        <scene sceneID="b8l-gO-1pK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KQA-0L-dPE" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Overview" id="ytO-fM-jiz"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4gE-Ch-Vrd">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yfY-qH-pxQ" kind="relationship" relationship="rootViewController" id="M46-Q0-OuS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dex-uA-Ywb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-158" y="-806"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Overview_Placeholder" width="308" height="180"/>
+    </resources>
+</document>

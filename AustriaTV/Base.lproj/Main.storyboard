@@ -16,13 +16,13 @@
                         <color key="barTintColor" red="0.88235294117647056" green="0.12941176470588234" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Qhq-WU-84n" kind="relationship" relationship="viewControllers" id="loO-7m-eZK"/>
-                        <segue destination="Ge3-X7-7IZ" kind="relationship" relationship="viewControllers" id="ZaH-Xi-Gco"/>
-                        <segue destination="4q2-tv-uSQ" kind="relationship" relationship="viewControllers" id="fJv-bI-SgF"/>
+                        <segue destination="6Mt-Xb-wUm" kind="relationship" relationship="viewControllers" id="j40-mg-JdH"/>
+                        <segue destination="Ge3-X7-7IZ" kind="relationship" relationship="viewControllers" id="ucP-Zv-dqj"/>
+                        <segue destination="zwH-Vu-4K9" kind="relationship" relationship="viewControllers" id="mMV-7o-awC"/>
                     </connections>
                 </tabBarController>
             </objects>
-            <point key="canvasLocation" x="-2190" y="1789"/>
+            <point key="canvasLocation" x="-2378" y="1773"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="Ahw-Ne-efs">
@@ -35,7 +35,7 @@
                         <color key="sectionIndexBackgroundColor" red="0.1333333333" green="0.12941176469999999" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProgramCell" id="Tjs-fs-t06">
-                                <rect key="frame" x="0.0" y="199" width="634" height="66"/>
+                                <rect key="frame" x="0.0" y="199" width="594" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tjs-fs-t06" id="uLE-bw-FYL">
                                     <rect key="frame" x="0.0" y="0.0" width="618" height="66"/>
@@ -84,7 +84,7 @@
         <scene sceneID="dhs-nh-OjV">
             <objects>
                 <splitViewController id="Ge3-X7-7IZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Programs" id="kdK-TC-XR2"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Programs" id="kdK-TC-XR2"/>
                     <connections>
                         <segue destination="e9e-hz-JqH" kind="relationship" relationship="masterViewController" id="1Ef-I5-7kh"/>
                         <segue destination="PEQ-5d-OID" kind="relationship" relationship="detailViewController" id="p1E-Ma-EjN"/>
@@ -93,97 +93,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zxu-cj-DkW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-158" y="2233"/>
-        </scene>
-        <!--Overview Collection View Controller-->
-        <scene sceneID="yOE-5O-kUh">
-            <objects>
-                <collectionViewController id="GBc-A7-TJK" customClass="OverviewCollectionViewController" customModule="AustriaTV" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="bLT-9I-Oi8">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.13333333333333333" green="0.12941176470588234" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="50" minimumInteritemSpacing="50" id="o0z-sZ-haQ">
-                            <size key="itemSize" width="308" height="240"/>
-                            <size key="headerReferenceSize" width="50" height="50"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="90" minY="25" maxX="90" maxY="25"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TeaserCell" id="7r6-Cb-13C" customClass="TeaserCollectionViewCell" customModule="AustriaTV" customModuleProvider="target">
-                                <rect key="frame" x="90" y="220" width="308" height="240"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="308" height="240"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Overview_Placeholder" adjustsImageWhenAncestorFocused="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XO6-Xr-ohP">
-                                            <rect key="frame" x="0.0" y="0.0" width="308" height="180"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="180" id="NpR-Y4-P3a"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="Ge5-Sx-SFN">
-                                            <rect key="frame" x="0.0" y="188" width="308" height="52"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="XO6-Xr-ohP" secondAttribute="trailing" id="G59-LH-ZWT"/>
-                                    <constraint firstItem="Ge5-Sx-SFN" firstAttribute="top" secondItem="XO6-Xr-ohP" secondAttribute="bottom" constant="8" id="Jnn-d3-Ceb"/>
-                                    <constraint firstItem="XO6-Xr-ohP" firstAttribute="leading" secondItem="7r6-Cb-13C" secondAttribute="leading" id="N9a-4e-ElG"/>
-                                    <constraint firstItem="Ge5-Sx-SFN" firstAttribute="leading" secondItem="7r6-Cb-13C" secondAttribute="leading" id="YvA-7q-b1W"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ge5-Sx-SFN" secondAttribute="trailing" id="axh-xx-hp4"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ge5-Sx-SFN" secondAttribute="bottom" id="coW-lx-6eF"/>
-                                    <constraint firstItem="XO6-Xr-ohP" firstAttribute="top" secondItem="7r6-Cb-13C" secondAttribute="top" id="neb-DS-0HU"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="teaserImageView" destination="XO6-Xr-ohP" id="77c-Li-F9E"/>
-                                    <outlet property="teaserTitle" destination="Ge5-Sx-SFN" id="FHk-5g-cZr"/>
-                                    <segue destination="o53-Sr-3Qf" kind="presentation" identifier="ShowEpisode" id="zps-Za-QR1"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TeaserHeader" id="KmH-qd-U3W" customClass="OverviewCollectionHeaderView" customModule="AustriaTV" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="145" width="1920" height="50"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ohy-KN-hn7">
-                                    <rect key="frame" x="90" y="2" width="93" height="46"/>
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="Ohy-KN-hn7" firstAttribute="leading" secondItem="KmH-qd-U3W" secondAttribute="leading" constant="90" id="ky6-qe-0rE"/>
-                                <constraint firstItem="Ohy-KN-hn7" firstAttribute="centerY" secondItem="KmH-qd-U3W" secondAttribute="centerY" id="yF4-cI-3On"/>
-                            </constraints>
-                            <connections>
-                                <outlet property="titleLabel" destination="Ohy-KN-hn7" id="9fP-N3-VlC"/>
-                            </connections>
-                        </collectionReusableView>
-                        <connections>
-                            <outlet property="dataSource" destination="GBc-A7-TJK" id="5q4-PJ-BYq"/>
-                            <outlet property="delegate" destination="GBc-A7-TJK" id="94L-FI-hXY"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" id="Ig5-Ar-0wr"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gjf-cH-PWn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1974" y="486"/>
-        </scene>
-        <!--EpisodeDetails-->
-        <scene sceneID="SKD-8f-FSz">
-            <objects>
-                <viewControllerPlaceholder storyboardName="EpisodeDetails" referencedIdentifier="EpisodeDetails" id="o53-Sr-3Qf" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NDJ-SS-zFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3347" y="486"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zfV-NE-Lvh">
@@ -202,25 +111,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I3y-4J-1Dx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2016.5" y="3625"/>
-        </scene>
-        <!--Overview-->
-        <scene sceneID="pcM-0f-go9">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qhq-WU-84n" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Overview" id="CU2-b8-feK"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kyH-76-3hZ">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="GBc-A7-TJK" kind="relationship" relationship="rootViewController" id="8Ky-gD-pVY"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NLy-9c-gD6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-158" y="486"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="SBm-iU-oVE">
@@ -297,8 +187,25 @@
             </objects>
             <point key="canvasLocation" x="-1978" y="6117"/>
         </scene>
+        <!--Live-->
+        <scene sceneID="1QP-wM-Y7b">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3RX-ky-DkA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Live" id="zwH-Vu-4K9" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="2" title="Live" id="lEf-Rl-PGS"/>
+                </viewControllerPlaceholder>
+            </objects>
+            <point key="canvasLocation" x="-1078.5" y="1445"/>
+        </scene>
+        <!--Overview-->
+        <scene sceneID="ccB-Z7-6OC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Overview" id="6Mt-Xb-wUm" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Overview" id="ctz-xd-c4Y"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iMq-gd-4YU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1062.5" y="1547"/>
+        </scene>
     </scenes>
-    <resources>
-        <image name="Overview_Placeholder" width="308" height="180"/>
-    </resources>
 </document>
