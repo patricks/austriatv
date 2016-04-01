@@ -30,6 +30,8 @@ class Episode: Mappable {
     var duration: Int?
     var channel: Channel?
     var publishState: PublishState?
+    var liveStreamStart: NSDate?
+    var liveStreamEnd: NSDate?
     
     var episodeType: Type {
         get {
@@ -49,7 +51,7 @@ class Episode: Mappable {
         let dateTransform = TransformOf<NSDate, String>(fromJSON: { (value: String?) -> NSDate? in
             // transform value from String? to NSDate?
             if let value = value {
-                return NSDate(fromString: value, format: .Custom("dd.MM.yyyy HH:mm:ss"), timeZone: .UTC)
+                return NSDate(fromString: value, format: .Custom("dd.MM.yyyy HH:mm:ss"), timeZone: .Local)
             }
             
             return NSDate()
@@ -70,6 +72,8 @@ class Episode: Mappable {
         duration <- map["duration"]
         channel <- map["channel"]
         publishState <- (map["publishState"], EnumTransform<PublishState>())
+        liveStreamStart <- (map["livestreamStart"], dateTransform)
+        liveStreamEnd <- (map["livestreamEnd"], dateTransform)
     }
     
     // MARK: format output
@@ -93,6 +97,10 @@ class Episode: Mappable {
     
     func getFullImageURL() -> NSURL? {
         return getImageURL("image_full")
+    }
+    
+    func getPreviewImageURL() -> NSURL? {
+        return getImageURL("logo4_mobile")
     }
     
     private func getImageURL(name: String) -> NSURL? {
@@ -157,6 +165,20 @@ class Episode: Mappable {
         }
 
         return nil
+    }
+    
+    // MARK: live stream
+    
+    func isLiveStreamOnline() -> Bool {
+        if let liveStreamStart = liveStreamStart, liveStreamEnd = liveStreamEnd {
+            let now = NSDate()
+            
+            if now.isGreaterThanDate(liveStreamStart) && now.isLessThanDate(liveStreamEnd) {
+                return true
+            }
+        }
+        
+        return false
     }
 }
 
