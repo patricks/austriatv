@@ -117,6 +117,83 @@ class EpisodeDetailsViewController: UIViewController {
     
     private func playEpisode(episode: Episode) {
         
+        if let episodeType = episode.episodeType {
+            switch episodeType {
+            case .videoOnDemand:
+                playVideoOnDemandEpisode(episode)
+            case .livestream:
+                playLivestreamEpisode(episode)
+            }
+        }
+    }
+    
+    private func playLivestreamEpisode(episode: Episode) {
+        
+        var urls = [String]()
+        var avPlayerItems = [AVPlayerItem]()
+        
+        // TODO: combine playLivestreamEpisode and playVideoOnDemandEpisode
+        
+        if let videos = episode.livestreamingVideos {
+            for video in videos {
+                if let streamingURL = video.streamingURL {
+                    if isHttpMP4StreamingURL(streamingURL) {
+                        Log.debug("URL: \(streamingURL)")
+                        
+                        urls.append(streamingURL)
+                        
+                        if let url = NSURL(string: streamingURL) {
+                            let item = AVPlayerItem(URL: url)
+                            
+                            var metadataItems = [AVMetadataItem]()
+                            
+                            // title
+                            if let title = episode.title {
+                                let titleMetadata = AVMutableMetadataItem()
+                                titleMetadata.identifier = AVMetadataCommonIdentifierTitle
+                                titleMetadata.locale = NSLocale.currentLocale()
+                                titleMetadata.value = title
+                                
+                                metadataItems.append(titleMetadata)
+                            }
+                            
+                            // description
+                            if let description = episode.getFullDescription() {
+                                let descriptionMetadata = AVMutableMetadataItem()
+                                descriptionMetadata.identifier = AVMetadataCommonIdentifierDescription
+                                descriptionMetadata.locale = NSLocale.currentLocale()
+                                descriptionMetadata.value = description
+                                
+                                metadataItems.append(descriptionMetadata)
+                            }
+                            
+                            // artwork
+                            if let image = episodeImageView.image {
+                                let artworkMetadata = AVMutableMetadataItem()
+                                artworkMetadata.identifier = AVMetadataCommonIdentifierArtwork
+                                artworkMetadata.locale = NSLocale.currentLocale()
+                                artworkMetadata.value = UIImageJPEGRepresentation(image, 1)
+                                
+                                metadataItems.append(artworkMetadata)
+                            }
+                            
+                            item.externalMetadata = metadataItems
+                            
+                            avPlayerItems.append(item)
+                        }
+                    }
+                }
+            }
+        }
+        
+        if avPlayerItems.count > 0 {
+            Log.debug("Segments: \(avPlayerItems.count)")
+            playVideos(avPlayerItems)
+        }
+    }
+    
+    private func playVideoOnDemandEpisode(episode: Episode) {
+        
         var urls = [String]()
         var avPlayerItems = [AVPlayerItem]()
         
@@ -186,6 +263,20 @@ class EpisodeDetailsViewController: UIViewController {
         if streamingURL.rangeOfString("mp4") != nil {
             if streamingURL.rangeOfString("http://") != nil {
                 return true
+            }
+        }
+        
+        return false
+    }
+    
+    private func isHttpMP4StreamingURL(streamingURL: String) -> Bool {
+        Log.debug("Testing streaming URL: \(streamingURL)")
+        
+        if streamingURL.rangeOfString("playlist.m3u8") != nil {
+            if streamingURL.rangeOfString("orfs_q4a") != nil {
+                if streamingURL.rangeOfString("ipad") != nil {
+                    return true
+                }
             }
         }
         

@@ -38,7 +38,7 @@ class Episode: Mappable {
     var episodeType: EpisodeType?
     var liveStreamStart: NSDate?
     var liveStreamEnd: NSDate?
-    var livestreamingURLs: [Video]?
+    var livestreamingVideos: [Video]?
     
     var type: Type {
         get {
@@ -82,7 +82,7 @@ class Episode: Mappable {
         episodeType <- (map["episodeType"], EnumTransform<EpisodeType>())
         liveStreamStart <- (map["livestreamStart"], dateTransform)
         liveStreamEnd <- (map["livestreamEnd"], dateTransform)
-        livestreamingURLs <- map["livestreamStreamingUrls"]
+        livestreamingVideos <- map["livestreamStreamingUrls"]
     }
     
     // MARK: format output
