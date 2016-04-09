@@ -21,6 +21,12 @@ class ProgramsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = NSLocalizedString("Programs", comment: "ProgramsTableViewController - Title")
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName: UIFont.systemFontOfSize(50)
+        ]
+        
+        self.tableView.maskView = nil
         
         getDataFromServer()
     }
@@ -70,6 +76,7 @@ extension ProgramsTableViewController {
         
         let program = programs[indexPath.row]
         
+        cell.textLabel?.textColor = UIColor.whiteColor()
         cell.textLabel?.text = program.name
         
         return cell
