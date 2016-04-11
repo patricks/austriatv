@@ -21,11 +21,14 @@ class ProgramsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = NSLocalizedString("Programs", comment: "ProgramsTableViewController - Title")
+        /*
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
             NSFontAttributeName: UIFont.systemFontOfSize(50)
         ]
+        */
         
+        self.navigationItem.title = nil
         self.tableView.maskView = nil
         
         getDataFromServer()
