@@ -151,49 +151,51 @@ class EpisodeDetailsViewController: UIViewController {
         
         for video in videos {
             if let streamingURL = video.streamingURL {
-                if isHttpMp4URL(streamingURL) {
-                    Log.debug("URL: \(streamingURL)")
-                    
-                    urls.append(streamingURL)
-                    
-                    if let url = NSURL(string: streamingURL) {
-                        let item = AVPlayerItem(URL: url)
+                if let episodeType = episode.episodeType {
+                    if isHttpMp4URL(streamingURL, type: episodeType) {
+                        Log.debug("URL: \(streamingURL)")
                         
-                        var metadataItems = [AVMetadataItem]()
+                        urls.append(streamingURL)
                         
-                        // title
-                        if let title = episode.title {
-                            let titleMetadata = AVMutableMetadataItem()
-                            titleMetadata.identifier = AVMetadataCommonIdentifierTitle
-                            titleMetadata.locale = NSLocale.currentLocale()
-                            titleMetadata.value = title
+                        if let url = NSURL(string: streamingURL) {
+                            let item = AVPlayerItem(URL: url)
                             
-                            metadataItems.append(titleMetadata)
-                        }
-                        
-                        // description
-                        if let description = episode.getFullDescription() {
-                            let descriptionMetadata = AVMutableMetadataItem()
-                            descriptionMetadata.identifier = AVMetadataCommonIdentifierDescription
-                            descriptionMetadata.locale = NSLocale.currentLocale()
-                            descriptionMetadata.value = description
+                            var metadataItems = [AVMetadataItem]()
                             
-                            metadataItems.append(descriptionMetadata)
-                        }
-                        
-                        // artwork
-                        if let image = episodeImageView.image {
-                            let artworkMetadata = AVMutableMetadataItem()
-                            artworkMetadata.identifier = AVMetadataCommonIdentifierArtwork
-                            artworkMetadata.locale = NSLocale.currentLocale()
-                            artworkMetadata.value = UIImageJPEGRepresentation(image, 1)
+                            // title
+                            if let title = episode.title {
+                                let titleMetadata = AVMutableMetadataItem()
+                                titleMetadata.identifier = AVMetadataCommonIdentifierTitle
+                                titleMetadata.locale = NSLocale.currentLocale()
+                                titleMetadata.value = title
+                                
+                                metadataItems.append(titleMetadata)
+                            }
                             
-                            metadataItems.append(artworkMetadata)
+                            // description
+                            if let description = episode.getFullDescription() {
+                                let descriptionMetadata = AVMutableMetadataItem()
+                                descriptionMetadata.identifier = AVMetadataCommonIdentifierDescription
+                                descriptionMetadata.locale = NSLocale.currentLocale()
+                                descriptionMetadata.value = description
+                                
+                                metadataItems.append(descriptionMetadata)
+                            }
+                            
+                            // artwork
+                            if let image = episodeImageView.image {
+                                let artworkMetadata = AVMutableMetadataItem()
+                                artworkMetadata.identifier = AVMetadataCommonIdentifierArtwork
+                                artworkMetadata.locale = NSLocale.currentLocale()
+                                artworkMetadata.value = UIImageJPEGRepresentation(image, 1)
+                                
+                                metadataItems.append(artworkMetadata)
+                            }
+                            
+                            item.externalMetadata = metadataItems
+                            
+                            avPlayerItems.append(item)
                         }
-                        
-                        item.externalMetadata = metadataItems
-                        
-                        avPlayerItems.append(item)
                     }
                 }
             }
@@ -205,7 +207,18 @@ class EpisodeDetailsViewController: UIViewController {
         }
     }
     
-    private func isHttpMp4URL(streamingURL: String) -> Bool {
+    private func isHttpMp4URL(streamingURL: String, type: Episode.EpisodeType) -> Bool {
+        switch type {
+        case .livestream:
+            return isHttpMP4LiveStreamingURL(streamingURL)
+        case .videoOnDemand:
+            return isOnDemandMP4StreamingURL(streamingURL)
+        }
+        
+        return false
+    }
+    
+    private func isOnDemandMP4StreamingURL(streamingURL: String) -> Bool {
         if streamingURL.rangeOfString("mp4") != nil {
             if streamingURL.rangeOfString("http://") != nil {
                 return true
@@ -215,7 +228,7 @@ class EpisodeDetailsViewController: UIViewController {
         return false
     }
     
-    private func isHttpMP4StreamingURL(streamingURL: String) -> Bool {
+    private func isHttpMP4LiveStreamingURL(streamingURL: String) -> Bool {
         Log.debug("Testing streaming URL: \(streamingURL)")
         
         if streamingURL.rangeOfString("playlist.m3u8") != nil {
