@@ -214,8 +214,6 @@ class EpisodeDetailsViewController: UIViewController {
         case .videoOnDemand:
             return isOnDemandMP4StreamingURL(streamingURL)
         }
-        
-        return false
     }
     
     private func isOnDemandMP4StreamingURL(streamingURL: String) -> Bool {
@@ -229,8 +227,6 @@ class EpisodeDetailsViewController: UIViewController {
     }
     
     private func isHttpMP4LiveStreamingURL(streamingURL: String) -> Bool {
-        Log.debug("Testing streaming URL: \(streamingURL)")
-        
         if streamingURL.rangeOfString("playlist.m3u8") != nil {
             if streamingURL.rangeOfString("orfs_q4a") != nil {
                 if streamingURL.rangeOfString("ipad") != nil {
