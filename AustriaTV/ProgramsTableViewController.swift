@@ -22,13 +22,17 @@ class ProgramsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
+        
         
         getDataFromServer()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if activityIndicatorView == nil {
+            setupUI()
+        }
         
         if programs.count < 1 {
             activityIndicatorView.startAnimating()

@@ -67,6 +67,9 @@ class OverviewCollectionViewController: UICollectionViewController {
             if successful {
                 if let _ = teaserItems {
                     self.teasers[TeaserCategory.Newest.hashValue] = teaserItems!
+                    
+                    self.activityIndicatorView.stopAnimating()
+                    
                     self.collectionView!.reloadData()
                 }
             }
@@ -77,6 +80,9 @@ class OverviewCollectionViewController: UICollectionViewController {
             if successful {
                 if let _ = teaserItems {
                     self.teasers[TeaserCategory.MostViewed.hashValue] = teaserItems!
+                    
+                    self.activityIndicatorView.stopAnimating()
+                    
                     self.collectionView!.reloadData()
                 }
             }
@@ -87,6 +93,9 @@ class OverviewCollectionViewController: UICollectionViewController {
             if successful {
                 if let _ = teaserItems {
                     self.teasers[TeaserCategory.Recommendations.hashValue] = teaserItems!
+                    
+                    self.activityIndicatorView.stopAnimating()
+                    
                     self.collectionView!.reloadData()
                 }
             }
