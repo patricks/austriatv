@@ -10,6 +10,8 @@ import UIKit
 
 class ProgramsTableViewController: UITableViewController {
     
+    private var activityIndicatorView: UIActivityIndicatorView!
+    
     private let apiManager = ApiManager()
     
     private var programs = [Program]()
@@ -20,18 +22,37 @@ class ProgramsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupUI()
+        
+        getDataFromServer()
+    }
+    
+    // MARK: UI
+    
+    private func setupUI() {
         self.navigationItem.title = NSLocalizedString("Programs", comment: "ProgramsTableViewController - Title")
         /*
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName: UIFont.systemFontOfSize(50)
-        ]
-        */
+         self.navigationController?.navigationBar.titleTextAttributes = [
+         NSForegroundColorAttributeName : UIColor.whiteColor(),
+         NSFontAttributeName: UIFont.systemFontOfSize(50)
+         ]
+         */
         
         self.navigationItem.title = nil
         self.tableView.maskView = nil
         
-        getDataFromServer()
+        setupLoadingIndicator()
+    }
+    
+    private func setupLoadingIndicator() {
+        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        activityIndicatorView.center = self.view.center
+        activityIndicatorView.hidesWhenStopped = true
+        activityIndicatorView.color = AppConstants.red
+        
+        activityIndicatorView.startAnimating()
+        
+        self.view.addSubview(activityIndicatorView)
     }
     
     // MARK: Data Source
@@ -43,6 +64,8 @@ class ProgramsTableViewController: UITableViewController {
                     self.programs = programs!
                     
                     self.sortPrograms()
+                    
+                    self.activityIndicatorView.stopAnimating()
                     
                     self.tableView.reloadData()
                 }
