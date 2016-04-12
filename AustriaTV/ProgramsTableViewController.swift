@@ -27,6 +27,14 @@ class ProgramsTableViewController: UITableViewController {
         getDataFromServer()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if programs.count < 1 {
+            activityIndicatorView.startAnimating()
+        }
+    }
+    
     // MARK: UI
     
     private func setupUI() {
@@ -49,8 +57,6 @@ class ProgramsTableViewController: UITableViewController {
         activityIndicatorView.center = self.view.center
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.color = AppConstants.red
-        
-        activityIndicatorView.startAnimating()
         
         self.view.addSubview(activityIndicatorView)
     }

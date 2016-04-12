@@ -11,6 +11,8 @@ import Kingfisher
 
 class LiveCollectionViewController: UICollectionViewController {
     
+    private var activityIndicatorView: UIActivityIndicatorView!
+    
     private let reuseCellIdentifier = "TeaserCell"
     private let reuseHeaderIdentifier = "TeaserHeader"
     
@@ -20,8 +22,25 @@ class LiveCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         
+        
+        setupLoadingIndicator()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
         getDataFromServer()
+    }
+    
+    private func setupLoadingIndicator() {
+        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        activityIndicatorView.center = self.view.center
+        activityIndicatorView.hidesWhenStopped = true
+        activityIndicatorView.color = AppConstants.red
+        
+        activityIndicatorView.startAnimating()
+        
+        self.view.addSubview(activityIndicatorView)
     }
     
     // MARK: Data Source
@@ -32,6 +51,8 @@ class LiveCollectionViewController: UICollectionViewController {
             if successful {
                 if let _ = episodes {
                     self.sortedChannels = self.parseChannels(episodes!)
+                    
+                    self.activityIndicatorView.stopAnimating()
                     
                     self.collectionView?.reloadData()
                 }

@@ -11,17 +11,38 @@ import Kingfisher
 
 class OverviewCollectionViewController: UICollectionViewController {
     
+    private var activityIndicatorView: UIActivityIndicatorView!
+    
     private let reuseCellIdentifier = "TeaserCell"
     private let reuseHeaderIdentifier = "TeaserHeader"
     
     private let apiManager = ApiManager()
     
     private var teasers = [Int: [Teaser]]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupLoadingIndicator()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
         getDataFromServer()
+    }
+    
+    // MARK: UI
+    
+    private func setupLoadingIndicator() {
+        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        activityIndicatorView.center = self.view.center
+        activityIndicatorView.hidesWhenStopped = true
+        activityIndicatorView.color = AppConstants.red
+        
+        activityIndicatorView.startAnimating()
+        
+        self.view.addSubview(activityIndicatorView)
     }
 
     // MARK: Data Source
@@ -33,6 +54,9 @@ class OverviewCollectionViewController: UICollectionViewController {
             if successful {
                 if let _ = teaserItems {
                     self.teasers[TeaserCategory.Hightlights.hashValue] = teaserItems!
+                    
+                    self.activityIndicatorView.stopAnimating()
+                    
                     self.collectionView!.reloadData()
                 }
             }
