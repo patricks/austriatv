@@ -129,24 +129,36 @@ class EpisodeDetailsViewController: UIViewController {
     }
     
     private func playLivestreamEpisode(episode: Episode) {
+        var avPlayerItems = [AVPlayerItem]()
+        
         if let videos = episode.livestreamingVideos {
-            prepareForPlayback(videos, forEpisode: episode)
+            avPlayerItems = prepareForPlayback(videos, forEpisode: episode)
+        }
+        
+        if avPlayerItems.count > 0 {
+            Log.debug("Segments: \(avPlayerItems.count)")
+            playVideos(avPlayerItems)
         }
     }
     
     private func playVideoOnDemandEpisode(episode: Episode) {
+        var avPlayerItems = [AVPlayerItem]()
+        
         if let segments = episode.segments {
             for segment in segments {
                 if let videos = segment.videos {
-                    prepareForPlayback(videos, forEpisode: episode)
-                    
+                    avPlayerItems.appendContentsOf(prepareForPlayback(videos, forEpisode: episode))
                 }
             }
         }
+        
+        if avPlayerItems.count > 0 {
+            Log.debug("Segments: \(avPlayerItems.count)")
+            playVideos(avPlayerItems)
+        }
     }
     
-    private func prepareForPlayback(videos: [Video], forEpisode episode: Episode) {
-        var urls = [String]()
+    private func prepareForPlayback(videos: [Video], forEpisode episode: Episode) -> [AVPlayerItem] {
         var avPlayerItems = [AVPlayerItem]()
         
         for video in videos {
@@ -154,8 +166,6 @@ class EpisodeDetailsViewController: UIViewController {
                 if let episodeType = episode.episodeType {
                     if isHttpMp4URL(streamingURL, type: episodeType) {
                         Log.debug("URL: \(streamingURL)")
-                        
-                        urls.append(streamingURL)
                         
                         if let url = NSURL(string: streamingURL) {
                             let item = AVPlayerItem(URL: url)
@@ -201,10 +211,7 @@ class EpisodeDetailsViewController: UIViewController {
             }
         }
         
-        if avPlayerItems.count > 0 {
-            Log.debug("Segments: \(avPlayerItems.count)")
-            playVideos(avPlayerItems)
-        }
+        return avPlayerItems
     }
     
     private func isHttpMp4URL(streamingURL: String, type: Episode.EpisodeType) -> Bool {
