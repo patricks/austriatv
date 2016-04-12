@@ -125,9 +125,11 @@ class Episode: Mappable {
     private func getImageURL(name: String) -> NSURL? {
         if let images = images {
             for image in images {
-                if image.name == name {
-                    if let url = image.url {
-                        return NSURL(string: url)
+                if let imageName = image.name {
+                    if imageName == name {
+                        if let url = image.url {
+                            return NSURL(string: url)
+                        }
                     }
                 }
             }

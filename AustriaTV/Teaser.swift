@@ -26,9 +26,11 @@ class Teaser: Mappable {
     func getImageURL() -> NSURL? {
         if let images = images {
             for image in images {
-                if image.name == "image2_mobile" {
-                    if let url = image.url {
-                        return NSURL(string: url)
+                if let imageName = image.name {
+                    if imageName == "image2_mobile" {
+                        if let url = image.url {
+                            return NSURL(string: url)
+                        }
                     }
                 }
             }
