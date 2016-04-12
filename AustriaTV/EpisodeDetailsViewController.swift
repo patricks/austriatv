@@ -234,6 +234,11 @@ class EpisodeDetailsViewController: UIViewController {
         
         let player = AVQueuePlayer(items: items)
         
+        // track playback
+        if let item = items.first {
+            trackPlayback(item)
+        }
+        
         // get notification if last segment has finished playing
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: #selector(EpisodeDetailsViewController.playerDidFinishPlaying(_:)),
@@ -249,7 +254,13 @@ class EpisodeDetailsViewController: UIViewController {
     
     // MARK: User Tracking
     
-    private func trackPlayback(title: String) {
-        Answers.logCustomEventWithName("Playing Episode", customAttributes: ["Name": title])
+    private func trackPlayback(avPlayerItem: AVPlayerItem) {
+        for metadata in avPlayerItem.externalMetadata {
+            if metadata.identifier == AVMetadataCommonIdentifierTitle {
+                if let title = metadata.value as? String {
+                    Answers.logCustomEventWithName("Playing Episode", customAttributes: ["Name": title])
+                }
+            }
+        }
     }
 }
