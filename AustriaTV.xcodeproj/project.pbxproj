@@ -35,6 +35,7 @@
 		CD1CD2601CA6AFFA00B74CE5 /* LiveCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1CD25F1CA6AFFA00B74CE5 /* LiveCollectionViewController.swift */; };
 		CD3C84DC1CBCD67D00C1A34B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD3C84DA1CBCD67D00C1A34B /* Fabric.framework */; };
 		CD3C84DD1CBCD67D00C1A34B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD3C84DB1CBCD67D00C1A34B /* Crashlytics.framework */; };
+		CD3C84DF1CBD082E00C1A34B /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3C84DE1CBD082E00C1A34B /* SettingsManager.swift */; };
 		CD715FC11C8C9A2C00097F7A /* Mopius+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD715FC01C8C9A2C00097F7A /* Mopius+String.swift */; };
 		CDDBB3ED1CAE8494009E755E /* Live.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDDBB3EC1CAE8494009E755E /* Live.storyboard */; };
 		CDDBB3EF1CAE8720009E755E /* Overview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDDBB3EE1CAE8720009E755E /* Overview.storyboard */; };
@@ -81,6 +82,7 @@
 		CD1CD25F1CA6AFFA00B74CE5 /* LiveCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCollectionViewController.swift; sourceTree = "<group>"; };
 		CD3C84DA1CBCD67D00C1A34B /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		CD3C84DB1CBCD67D00C1A34B /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		CD3C84DE1CBD082E00C1A34B /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		CD715FC01C8C9A2C00097F7A /* Mopius+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mopius+String.swift"; sourceTree = "<group>"; };
 		CDDBB3EC1CAE8494009E755E /* Live.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Live.storyboard; sourceTree = "<group>"; };
 		CDDBB3EE1CAE8720009E755E /* Overview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Overview.storyboard; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				CD039DB41C81B71F009F2BF2 /* Programs */,
 				CD039DB91C82DC14009F2BF2 /* Episodes */,
 				CD1CD25E1CA6886000B74CE5 /* Live */,
+				CD3C84DE1CBD082E00C1A34B /* SettingsManager.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				CDDBB3F11CAE9312009E755E /* Patricks+NSDate.swift in Sources */,
 				CD1CD25B1CA680E000B74CE5 /* EpisodeDetailsResponse.swift in Sources */,
 				CDDBB3F91CAE9C95009E755E /* Video.swift in Sources */,
+				CD3C84DF1CBD082E00C1A34B /* SettingsManager.swift in Sources */,
 				CDE2F45D1C8B3B8F00731DDF /* OverviewCollectionHeaderView.swift in Sources */,
 				CD1CD2601CA6AFFA00B74CE5 /* LiveCollectionViewController.swift in Sources */,
 				CD039D871C809CE1009F2BF2 /* AppConstants.swift in Sources */,

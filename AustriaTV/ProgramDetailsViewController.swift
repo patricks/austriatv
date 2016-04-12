@@ -39,6 +39,9 @@ class ProgramDetailsViewController: UIViewController {
             programNameLabel.text = program.name
             favoriteButton.hidden = false
             
+            // set favorite button
+            setFavoriteButtonState()
+            
             let placeholderImage = UIImage(named: "Episode_Details_Placeholder")
             
             if let imageURL = program.getImageURL() {
@@ -48,6 +51,16 @@ class ProgramDetailsViewController: UIViewController {
             }
             
             getDataFromServer()
+        }
+    }
+    
+    private func setFavoriteButtonState() {
+        if let program = program {
+            if SettingsManager.sharedInstance.isFavoriteProgam(program) {
+                favoriteButton.setTitle(NSLocalizedString("IS Favorite", comment: "Program Favorite Button"), forState: .Normal)
+            } else {
+                favoriteButton.setTitle(NSLocalizedString("Favorite", comment: "Program Favorite Button"), forState: .Normal)
+            }
         }
     }
     
@@ -69,6 +82,18 @@ class ProgramDetailsViewController: UIViewController {
     
     @IBAction func favoriteButtonPushed(sender: AnyObject) {
         // TODO: add to favorite programs
+        if let program = self.program {
+            
+            if SettingsManager.sharedInstance.isFavoriteProgam(program) {
+                SettingsManager.sharedInstance.removeFavoriteProgram(program)
+            } else {
+                SettingsManager.sharedInstance.addFavoriteProgram(program)
+            }
+            
+            
+            // set favorite button
+            setFavoriteButtonState()
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
