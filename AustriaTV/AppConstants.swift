@@ -6,8 +6,7 @@
 //  Copyright © 2016 Patrick. All rights reserved.
 //
 
-import Foundation
-
+import UIKit
 
 struct AppConstants {
     
@@ -22,4 +21,7 @@ struct AppConstants {
     static let red = "E12128".hexColor!
     static let blue = "222149".hexColor!
     static let lightBlue = "3E8FF4".hexColor!
+    
+    // Indicator
+    static let  activityIndicatorColor = UIColor.whiteColor()
 }

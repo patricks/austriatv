@@ -36,7 +36,7 @@ class LiveCollectionViewController: UICollectionViewController {
         activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
         activityIndicatorView.center = self.view.center
         activityIndicatorView.hidesWhenStopped = true
-        activityIndicatorView.color = AppConstants.red
+        activityIndicatorView.color = AppConstants.activityIndicatorColor
         
         activityIndicatorView.startAnimating()
         

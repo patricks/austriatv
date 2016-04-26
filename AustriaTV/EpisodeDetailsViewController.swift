@@ -235,7 +235,7 @@ class EpisodeDetailsViewController: UIViewController {
     
     private func isHttpMP4LiveStreamingURL(streamingURL: String) -> Bool {
         if streamingURL.rangeOfString("playlist.m3u8") != nil {
-            if streamingURL.rangeOfString("orfs_q4a") != nil {
+            if streamingURL.rangeOfString("_q4a") != nil {
                 if streamingURL.rangeOfString("ipad") != nil {
                     return true
                 }

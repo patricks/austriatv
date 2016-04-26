@@ -60,7 +60,7 @@ class ProgramsTableViewController: UITableViewController {
         activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
         activityIndicatorView.center = self.view.center
         activityIndicatorView.hidesWhenStopped = true
-        activityIndicatorView.color = AppConstants.red
+        activityIndicatorView.color = AppConstants.activityIndicatorColor
         
         self.view.addSubview(activityIndicatorView)
     }
