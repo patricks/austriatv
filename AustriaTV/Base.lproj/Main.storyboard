@@ -24,7 +24,7 @@
             </objects>
             <point key="canvasLocation" x="-2378" y="1773"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Programs Table View Controller-->
         <scene sceneID="Ahw-Ne-efs">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="AbJ-wx-Ku2" customClass="ProgramsTableViewController" customModule="AustriaTV" customModuleProvider="target" sceneMemberID="viewController">
@@ -48,7 +48,21 @@
                             <outlet property="delegate" destination="AbJ-wx-Ku2" id="PdM-nf-UdS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="VMK-2Z-Kvf"/>
+                    <navigationItem key="navigationItem" id="liK-aL-jOn">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="qHM-ro-xLd">
+                            <rect key="frame" x="52" y="63" width="531" height="70"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                            <segments>
+                                <segment title="All Programs"/>
+                                <segment title="Favorites"/>
+                            </segments>
+                            <connections>
+                                <action selector="programFilterChanged:" destination="AbJ-wx-Ku2" eventType="valueChanged" id="yWY-Wq-bLX"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smF-9k-Og0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -68,7 +82,7 @@
         <scene sceneID="IpJ-Rl-14G">
             <objects>
                 <navigationController id="e9e-hz-JqH" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zNg-Wd-vqU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zNg-Wd-vqU">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -99,7 +113,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PEQ-5d-OID" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5cj-7U-VPc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="5cj-7U-VPc">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

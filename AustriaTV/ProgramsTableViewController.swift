@@ -22,8 +22,6 @@ class ProgramsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         getDataFromServer()
     }
     
@@ -63,6 +61,15 @@ class ProgramsTableViewController: UITableViewController {
         activityIndicatorView.color = AppConstants.activityIndicatorColor
         
         self.view.addSubview(activityIndicatorView)
+    }
+    
+    @IBAction func programFilterChanged(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 1:
+            Log.debug("Favorites selected")
+        default:
+            Log.debug("All programs selected")
+        }
     }
     
     // MARK: Data Source
