@@ -63,6 +63,9 @@
                             </connections>
                         </segmentedControl>
                     </navigationItem>
+                    <connections>
+                        <outlet property="programFilterSegmentedControl" destination="qHM-ro-xLd" id="Ygd-5D-9da"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smF-9k-Og0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -26,11 +26,11 @@ class SettingsManager {
     
     // MARK: Favorites
     
-    var favoritePrograms: Set<Int>? {
+    var favoritePrograms: Set<Program>? {
         get {
             if let data  = defaults.objectForKey(favoriteProgramsKey) as? NSData {
                 let unarc = NSKeyedUnarchiver(forReadingWithData: data)
-                return unarc.decodeObjectForKey("root") as? Set<Int>
+                return unarc.decodeObjectForKey("root") as? Set<Program>
             }
             
             return nil
@@ -44,25 +44,25 @@ class SettingsManager {
         }
     }
     
-    func addFavoriteProgram(programId: Int) {
+    func addFavoriteProgram(program: Program) {
         if let _ = self.favoritePrograms {
-            self.favoritePrograms!.insert(programId)
+            self.favoritePrograms!.insert(program)
         } else {
-            var favs = Set<Int>()
-            favs.insert(programId)
+            var favs = Set<Program>()
+            favs.insert(program)
             
             self.favoritePrograms = favs
         }
     }
     
-    func removeFavoriteProgram(programId: Int) {
+    func removeFavoriteProgram(program: Program) {
         if let _ = self.favoritePrograms {
-            self.favoritePrograms!.remove(programId)
+            self.favoritePrograms!.remove(program)
         }
     }
     
-    func isFavoriteProgam(programId: Int) -> Bool {
-        if let result = favoritePrograms?.contains(programId) {
+    func isFavoriteProgam(program: Program) -> Bool {
+        if let result = favoritePrograms?.contains(program) {
             return result
         }
         

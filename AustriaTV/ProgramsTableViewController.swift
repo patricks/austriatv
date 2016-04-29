@@ -10,11 +10,15 @@ import UIKit
 
 class ProgramsTableViewController: UITableViewController {
     
+    @IBOutlet weak var programFilterSegmentedControl: UISegmentedControl!
+    
     private var activityIndicatorView: UIActivityIndicatorView!
     
     private let apiManager = ApiManager()
     
-    private var programs = [Program]()
+    private var allPrograms = [Program]()
+    private var visiblePrograms = [Program]()
+    private var favoritePrograms = [Program]()
     
     private let delayedSeguesOperationQueue = NSOperationQueue()
     private static let performSegueDelay: NSTimeInterval = 0.1
@@ -22,7 +26,10 @@ class ProgramsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        visiblePrograms = allPrograms
+        
         getDataFromServer()
+        getStoredPrograms()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -32,7 +39,7 @@ class ProgramsTableViewController: UITableViewController {
             setupUI()
         }
         
-        if programs.count < 1 {
+        if visiblePrograms.count < 1 {
             activityIndicatorView.startAnimating()
         }
     }
@@ -66,34 +73,49 @@ class ProgramsTableViewController: UITableViewController {
     @IBAction func programFilterChanged(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 1:
-            Log.debug("Favorites selected")
+            getStoredPrograms()
+            
+            visiblePrograms = favoritePrograms
         default:
-            Log.debug("All programs selected")
+            visiblePrograms = allPrograms
         }
+        
+        tableView.reloadData()
     }
     
     // MARK: Data Source
+    
+    private func getStoredPrograms() {
+        if let favorites = SettingsManager.sharedInstance.favoritePrograms {
+            favoritePrograms = Array(favorites)
+        }
+    }
     
     private func getDataFromServer() {
         apiManager.getPrograms { (successful, programs) in
             if successful {
                 if let _ = programs {
-                    self.programs = programs!
+                    self.allPrograms = programs!
                     
                     self.sortPrograms()
                     
-                    self.activityIndicatorView.stopAnimating()
+                    // if this program filter is selected, copy the array
+                    if self.programFilterSegmentedControl.selectedSegmentIndex == 0 {
+                        self.visiblePrograms = self.allPrograms
+                    }
                     
-                    self.tableView.reloadData()
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.tableView.reloadData()
+                    })
                 }
             }
         }
     }
     
     private func sortPrograms() {
-        let sorted = programs.sort { $0.name < $1.name }
+        let sorted = allPrograms.sort { $0.name < $1.name }
         
-        programs = sorted
+        allPrograms = sorted
     }
     
     // MARK: Manage DetailsView
@@ -111,13 +133,19 @@ class ProgramsTableViewController: UITableViewController {
 
 extension ProgramsTableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return programs.count
+        if visiblePrograms.count == 0 {
+            activityIndicatorView.startAnimating()
+        } else {
+            activityIndicatorView.stopAnimating()
+        }
+        
+        return visiblePrograms.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ProgramCell", forIndexPath: indexPath)
         
-        let program = programs[indexPath.row]
+        let program = visiblePrograms[indexPath.row]
         
         cell.textLabel?.textColor = UIColor.whiteColor()
         cell.textLabel?.text = program.name
@@ -140,7 +168,7 @@ extension ProgramsTableViewController {
             guard !performSegueOperation.cancelled else { return }
             
             NSOperationQueue.mainQueue().addOperationWithBlock {
-                if let program = self?.programs[indexPath.row] {
+                if let program = self?.visiblePrograms[indexPath.row] {
                     self?.setupDetailsViewWithProgram(program)
                 }
             }

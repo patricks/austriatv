@@ -55,8 +55,8 @@ class ProgramDetailsViewController: UIViewController {
     }
     
     private func setFavoriteButtonState() {
-        if let programId = program?.programId {
-            if SettingsManager.sharedInstance.isFavoriteProgam(programId) {
+        if let program = program {
+            if SettingsManager.sharedInstance.isFavoriteProgam(program) {
                 favoriteButton.setTitle(NSLocalizedString("IS Favorite", comment: "Program Favorite Button"), forState: .Normal)
             } else {
                 favoriteButton.setTitle(NSLocalizedString("Favorite", comment: "Program Favorite Button"), forState: .Normal)
@@ -82,12 +82,12 @@ class ProgramDetailsViewController: UIViewController {
     
     @IBAction func favoriteButtonPushed(sender: AnyObject) {
         // TODO: add to favorite programs
-        if let programId = program?.programId {
+        if let program = program {
             
-            if SettingsManager.sharedInstance.isFavoriteProgam(programId) {
-                SettingsManager.sharedInstance.removeFavoriteProgram(programId)
+            if SettingsManager.sharedInstance.isFavoriteProgam(program) {
+                SettingsManager.sharedInstance.removeFavoriteProgram(program)
             } else {
-                SettingsManager.sharedInstance.addFavoriteProgram(programId)
+                SettingsManager.sharedInstance.addFavoriteProgram(program)
             }
             
             // set favorite button
