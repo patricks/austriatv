@@ -139,9 +139,9 @@
 				CD039D901C80A52C009F2BF2 /* API */,
 				CD039DA61C81A111009F2BF2 /* Controllers */,
 				CDE2F45B1C8B295000731DDF /* Views */,
+				CDEBC4AA1CDDDF7B00E928C0 /* Utils */,
 				CD039D861C809CE1009F2BF2 /* AppConstants.swift */,
 				CD039D6D1C8099C9009F2BF2 /* AppDelegate.swift */,
-				CD039D911C80A5C1009F2BF2 /* Log.swift */,
 				CD039D711C8099C9009F2BF2 /* Main.storyboard */,
 				CD039D741C8099C9009F2BF2 /* Assets.xcassets */,
 				CD039D761C8099C9009F2BF2 /* Info.plist */,
@@ -283,6 +283,14 @@
 				CDE2F45C1C8B3B8F00731DDF /* OverviewCollectionHeaderView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		CDEBC4AA1CDDDF7B00E928C0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CD039D911C80A5C1009F2BF2 /* Log.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -84,8 +84,14 @@ class ProgramsTableViewController: UITableViewController {
             getStoredPrograms()
             
             visiblePrograms = favoritePrograms
+            
+            // analytics
+            Answers.logCustomEventWithName("ProgramFilter", customAttributes: ["FilterSelected": "Favorites"])
         default:
             visiblePrograms = allPrograms
+            
+            // analytics
+            Answers.logCustomEventWithName("ProgramFilter", customAttributes: ["FilterSelected": "All"])
         }
         
         tableView.reloadData()
