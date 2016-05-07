@@ -42,7 +42,7 @@ class OverviewCollectionViewController: UICollectionViewController {
         activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
         activityIndicatorView.center = self.view.center
         activityIndicatorView.hidesWhenStopped = true
-        activityIndicatorView.color = AppConstants.activityIndicatorColor
+        activityIndicatorView.color = AppConstants.ActivityIndicatorColor
         
         activityIndicatorView.startAnimating()
         

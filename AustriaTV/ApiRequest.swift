@@ -33,26 +33,26 @@ enum APIRequest: URLRequestConvertible {
             
             switch self {
             case .MostViewed():
-                return ("\(AppConstants.baseApiPath)/teaser_content/most_viewed", nil, "GET")
+                return ("\(AppConstants.BaseApiPath)/teaser_content/most_viewed", nil, "GET")
                 
             case .Newest():
-                return ("\(AppConstants.baseApiPath)/teaser_content/newest", nil, "GET")
+                return ("\(AppConstants.BaseApiPath)/teaser_content/newest", nil, "GET")
                 
             case .Recommendations():
-                return ("\(AppConstants.baseApiPath)/teaser_content/recommendations", nil, "GET")
+                return ("\(AppConstants.BaseApiPath)/teaser_content/recommendations", nil, "GET")
                 
             case .Highlights():
-                return ("\(AppConstants.baseApiPath)/teaser_content/highlights", nil, "GET")
+                return ("\(AppConstants.BaseApiPath)/teaser_content/highlights", nil, "GET")
                 
             case .Episode(let episodeId):
-                return ("\(AppConstants.baseApiPath)/episode/\(episodeId)/", nil, "GET")
+                return ("\(AppConstants.BaseApiPath)/episode/\(episodeId)/", nil, "GET")
                 
             case .EpisodesByProgram(let programId):
-                return ("\(AppConstants.baseApiPath)/episodes/by_program/\(programId)/", nil, "GET")
+                return ("\(AppConstants.BaseApiPath)/episodes/by_program/\(programId)/", nil, "GET")
                 
             case .Programs():
                 let params = ["page": "\(0)", "entries_per_page": "\(1000)"]
-                return ("\(AppConstants.baseApiPath)/programs", params, "GET")
+                return ("\(AppConstants.BaseApiPath)/programs", params, "GET")
                 
             case .Livestreams():
                 let now = NSDate()
@@ -60,11 +60,11 @@ enum APIRequest: URLRequestConvertible {
                 let startTime = now.toString(format: .Custom("yyyyMMddHHmm"))
                 let endTime = now.dateByAddingDays(1).toString(format: .Custom("yyyyMMddHHmm"))
                 
-                return ("\(AppConstants.baseApiPath)/livestreams/from/\(startTime)/till/\(endTime)/detail", nil, "GET")
+                return ("\(AppConstants.BaseApiPath)/livestreams/from/\(startTime)/till/\(endTime)/detail", nil, "GET")
             }
         }()
         
-        let URL = NSURL(string: AppConstants.apiURL)
+        let URL = NSURL(string: AppConstants.ApiURL)
         let URLRequest = NSMutableURLRequest(URL: URL!.URLByAppendingPathComponent(result.path))
         URLRequest.HTTPMethod = result.httpMethod
         
