@@ -197,8 +197,20 @@ extension ProgramsTableViewController {
     }
     
     override func tableView(tableView: UITableView, didUpdateFocusInContext context: UITableViewFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
+        
+        // change the text color of the selected cell
+        if let previousIndexPath = context.previouslyFocusedIndexPath {
+            if let previousCell = tableView.cellForRowAtIndexPath(previousIndexPath) {
+                previousCell.textLabel?.textColor = UIColor.whiteColor()
+            }
+        }
+        
         guard let nextFocusedView = context.nextFocusedView where nextFocusedView.isDescendantOfView(tableView) else { return }
         guard let indexPath = context.nextFocusedIndexPath else { return }
+        
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+            cell.textLabel?.textColor = AppConstants.Blue
+        }
         
         delayedSeguesOperationQueue.cancelAllOperations()
         
