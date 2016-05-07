@@ -29,6 +29,7 @@ class ProgramsTableViewController: UITableViewController {
         
         visiblePrograms = allPrograms
         
+        setupNotifications()
         getDataFromServer()
         getStoredPrograms()
     }
@@ -50,6 +51,10 @@ class ProgramsTableViewController: UITableViewController {
         
         // analytics
         Answers.logCustomEventWithName("ViewController", customAttributes: ["ViewControllerSelected": "ProgramsTableViewController"])
+    }
+    
+    deinit {
+        removeNotifications()
     }
     
     // MARK: UI
@@ -130,6 +135,30 @@ class ProgramsTableViewController: UITableViewController {
         let sorted = allPrograms.sort { $0.name < $1.name }
         
         allPrograms = sorted
+    }
+    
+    // MARK: - Notifications
+    
+    private func setupNotifications() {
+        // get notifications for if beacons updates appear
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(ProgramsTableViewController.onFavoritesUpdated(_:)),
+                                                         name: AppConstants.favoritesUpdatedKey,
+                                                         object: nil)
+    }
+    
+    private func removeNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(AppConstants.favoritesUpdatedKey)
+    }
+    
+    func onFavoritesUpdated(notification: NSNotification) {
+        
+        if programFilterSegmentedControl.selectedSegmentIndex == 1 {
+            getStoredPrograms()
+            
+            visiblePrograms = favoritePrograms
+            self.tableView.reloadData()
+        }
     }
     
     // MARK: Manage DetailsView

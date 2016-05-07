@@ -65,9 +65,9 @@ class ProgramDetailsViewController: UIViewController {
     private func setFavoriteButtonState() {
         if let program = program {
             if SettingsManager.sharedInstance.isFavoriteProgam(program) {
-                favoriteButton.setTitle(NSLocalizedString("IS Favorite", comment: "Program Favorite Button"), forState: .Normal)
+                favoriteButton.setImage(UIImage(named: "Button_Heart_Selected"), forState: .Normal)
             } else {
-                favoriteButton.setTitle(NSLocalizedString("Favorite", comment: "Program Favorite Button"), forState: .Normal)
+                favoriteButton.setImage(UIImage(named: "Button_Heart"), forState: .Normal)
             }
         }
     }
@@ -89,7 +89,6 @@ class ProgramDetailsViewController: UIViewController {
     }
     
     @IBAction func favoriteButtonPushed(sender: AnyObject) {
-        // TODO: add to favorite programs
         if let program = program {
             
             if SettingsManager.sharedInstance.isFavoriteProgam(program) {

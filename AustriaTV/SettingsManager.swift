@@ -53,12 +53,16 @@ class SettingsManager {
             
             self.favoritePrograms = favs
         }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(AppConstants.favoritesUpdatedKey, object: nil)
     }
     
     func removeFavoriteProgram(program: Program) {
         if let _ = self.favoritePrograms {
             self.favoritePrograms!.remove(program)
         }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(AppConstants.favoritesUpdatedKey, object: nil)
     }
     
     func isFavoriteProgam(program: Program) -> Bool {
