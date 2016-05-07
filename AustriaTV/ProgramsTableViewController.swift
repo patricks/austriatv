@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class ProgramsTableViewController: UITableViewController {
     
@@ -42,6 +43,13 @@ class ProgramsTableViewController: UITableViewController {
         if visiblePrograms.count < 1 {
             activityIndicatorView.startAnimating()
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // analytics
+        Answers.logCustomEventWithName("ViewController", customAttributes: ["ViewControllerSelected": "ProgramsTableViewController"])
     }
     
     // MARK: UI

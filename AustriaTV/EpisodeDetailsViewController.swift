@@ -28,6 +28,13 @@ class EpisodeDetailsViewController: UIViewController {
         durationLabel.text = nil
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // analytics
+        Answers.logCustomEventWithName("ViewController", customAttributes: ["ViewControllerSelected": "EpisodeDetailsViewController"])
+    }
+    
     deinit {
         removeNotifications()
     }
