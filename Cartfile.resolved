@@ -1,3 +1,4 @@
+github "melvitax/AFDateHelper" "3.3.1"
 github "Alamofire/Alamofire" "3.3.1"
 github "onevcat/Kingfisher" "2.4.0"
 github "Hearst-DD/ObjectMapper" "1.2.0"

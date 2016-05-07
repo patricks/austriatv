@@ -21,6 +21,8 @@ class LiveCollectionViewController: UICollectionViewController {
     
     private var sortedChannels = [(String, [Episode])]()
     
+    private var reloadTimer = NSTimer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,6 +69,8 @@ class LiveCollectionViewController: UICollectionViewController {
     private func parseChannels(episodes: [Episode]) -> [(String, [Episode])] {
         var channels = [String: [Episode]]()
         
+        var durationToLiveStream: Int?
+        
         for episode in episodes {
             if let channelName = episode.channel?.name {
                 
@@ -86,11 +90,50 @@ class LiveCollectionViewController: UICollectionViewController {
                 }
                 
                 channels[onlineChannelName]?.append(episode)
+            } else { // get duration until live stream is online, and refresh the view.
+                
+                if let seconds = episode.getDurationToLiveStreamStart() {
+                    
+                    if durationToLiveStream == nil {
+                        durationToLiveStream = seconds
+                        Log.debug("next reload for episode: \(episode.title)")
+                    } else if durationToLiveStream > seconds {
+                        durationToLiveStream = seconds
+                        Log.debug("next reload for episode: \(episode.title)")
+                    }
+                }
             }
+        }
+        
+        // set the data reloading timer
+        if let durationInSeconds = durationToLiveStream {
+            // add additional seconds
+            Log.debug("Next reload is in: \(durationInSeconds + 5) seconds")
+            setDurationForServerReload(Double(durationInSeconds + 5))
+        } else {
+            // default reload after 5 minutes
+            Log.debug("No Next reload so reload in: \(18000) seconds")
+            setDurationForServerReload(Double(18000))
         }
         
         // sort the channels
         return channels.sort { $0.0 < $1.0 }
+    }
+    
+    private func setDurationForServerReload(seconds: Double) {
+        reloadTimer.invalidate()
+        reloadTimer = NSTimer.scheduledTimerWithTimeInterval(
+            seconds,
+            target: self,
+            selector: #selector(LiveCollectionViewController.reloadServerData),
+            userInfo: nil,
+            repeats: false
+        )
+    }
+    
+    func reloadServerData() {
+        Log.debug("reloading server data")
+        getDataFromServer()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -171,5 +214,29 @@ extension LiveCollectionViewController {
         }
         
         return reusableView
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let episodes = sortedChannels[indexPath.section].1
+        let episode = episodes[indexPath.row]
+        
+        if episode.isLiveStreamOnline() {
+            performSegueWithIdentifier("ShowEpisode", sender: self)
+        } else {
+            var message = NSLocalizedString("Live stream is currently not available", comment: "Live Stream Not Available Dialog Unknown Time")
+            
+            if let duration = episode.getFormatedDurationToLiveStreamStart() {
+                message = String.localizedStringWithFormat(NSLocalizedString("Live stream is available in %@", comment: "Live Stream Not Available Dialog Message"), duration)
+            }
+            
+            let alertController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
+            
+            let okTitle = NSLocalizedString("OK", comment: "Live Stream Not Available Dialog OK Button")
+            let okAction = UIAlertAction(title: okTitle, style: .Cancel, handler: nil)
+            
+            alertController.addAction(okAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
 }

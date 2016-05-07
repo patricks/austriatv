@@ -170,21 +170,45 @@ class Episode: Mappable {
     
     // MARK: duration
     
+    private func formatDuration(durationInSeconds duration: Int) -> String? {
+        let formatter = NSDateComponentsFormatter()
+        formatter.unitsStyle = .Full
+        
+        let components = NSDateComponents()
+        
+        // set hours, minutes or second
+        components.hour = Int(duration / 3600)
+        components.minute = Int((duration / 60) % 60)
+        components.second = Int(duration % 60)
+        
+        return formatter.stringFromDateComponents(components)
+    }
+    
     func getFormatedDuration() -> String? {
         if let duration = duration {
-            let formatter = NSDateComponentsFormatter()
-            formatter.unitsStyle = .Full
-            
-            let components = NSDateComponents()
-            
-            // set hours, minutes or second
-            components.hour = Int(duration / 3600)
-            components.minute = Int((duration / 60) % 60)
-            components.second = Int(duration % 60)
-            
-            return formatter.stringFromDateComponents(components)
+            return formatDuration(durationInSeconds: duration)
         }
-
+        
+        return nil
+    }
+    
+    func getDurationToLiveStreamStart() -> Int? {
+        if let liveStreamStart = liveStreamStart {
+            let now = NSDate()
+            
+            if now.isLessThanDate(liveStreamStart) {
+                return now.secondsBeforeDate(liveStreamStart)
+            }
+        }
+        
+        return nil
+    }
+    
+    func getFormatedDurationToLiveStreamStart() -> String? {
+        if let seconds = getDurationToLiveStreamStart() {
+            return formatDuration(durationInSeconds: seconds)
+        }
+        
         return nil
     }
     
