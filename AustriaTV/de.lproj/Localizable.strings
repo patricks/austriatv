@@ -28,11 +28,11 @@
 /* Category: Highlights */
 "Highlights" = "Highlights";
 
-/* Live Stream Not Available Dialog Message */
-"Live stream is available in %@" = "Livestream is verfügbar in %@";
+/* Livestream Not Available Dialog Message */
+"Livestream is available in %@" = "Livestream ist verfügbar in %@";
 
-/* Live Stream Not Available Dialog Unknown Time */
-"Live stream is currently not available" = "Live stream is currently not available";
+/* Livestream Not Available Dialog Unknown Time */
+"Livestream is currently not available" = "Livestream ist derzeit nicht verfügbar";
 
 /* Category: Most Viewed */
 "Most Viewed" = "Meist gesehen";
@@ -40,7 +40,7 @@
 /* Category: Newest */
 "Newest" = "Neuesten";
 
-/* Live Stream Not Available Dialog OK Button */
+/* Livestream Not Available Dialog OK Button */
 "OK" = "OK";
 
 /* ProgramsTableViewController - Title */

@@ -223,15 +223,15 @@ extension LiveCollectionViewController {
         if episode.isLiveStreamOnline() {
             performSegueWithIdentifier("ShowEpisode", sender: self)
         } else {
-            var message = NSLocalizedString("Live stream is currently not available", comment: "Live Stream Not Available Dialog Unknown Time")
+            var message = NSLocalizedString("Livestream is currently not available", comment: "Livestream Not Available Dialog Unknown Time")
             
             if let duration = episode.getFormatedDurationToLiveStreamStart() {
-                message = String.localizedStringWithFormat(NSLocalizedString("Live stream is available in %@", comment: "Live Stream Not Available Dialog Message"), duration)
+                message = String.localizedStringWithFormat(NSLocalizedString("Livestream is available in %@", comment: "Livestream Not Available Dialog Message"), duration)
             }
             
             let alertController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
             
-            let okTitle = NSLocalizedString("OK", comment: "Live Stream Not Available Dialog OK Button")
+            let okTitle = NSLocalizedString("OK", comment: "Livestream Not Available Dialog OK Button")
             let okAction = UIAlertAction(title: okTitle, style: .Cancel, handler: nil)
             
             alertController.addAction(okAction)

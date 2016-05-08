@@ -52,93 +52,93 @@
         <body>
             <trans-unit id="%.f days ago">
                 <source>%.f days ago</source>
-                <note>Show the relative time from a date</note>
                 <target>vor %.f Tagen</target>
+                <note>Show the relative time from a date</note>
             </trans-unit>
             <trans-unit id="%.f hours ago">
                 <source>%.f hours ago</source>
-                <note>Show the relative time from a date</note>
                 <target>vor %.f Stunden</target>
+                <note>Show the relative time from a date</note>
             </trans-unit>
             <trans-unit id="%.f minutes ago">
                 <source>%.f minutes ago</source>
-                <note>Show the relative time from a date</note>
                 <target>vor %.f Minuten</target>
+                <note>Show the relative time from a date</note>
             </trans-unit>
             <trans-unit id="%.f seconds ago">
                 <source>%.f seconds ago</source>
-                <note>Show the relative time from a date</note>
                 <target>vor %.f Sekunden</target>
+                <note>Show the relative time from a date</note>
             </trans-unit>
             <trans-unit id="1 day ago">
                 <source>1 day ago</source>
-                <note>Show the relative time from a date</note>
                 <target>vor einem Tag</target>
+                <note>Show the relative time from a date</note>
             </trans-unit>
             <trans-unit id="1 hour ago">
                 <source>1 hour ago</source>
-                <note>Show the relative time from a date</note>
                 <target>vor einer Stunde</target>
+                <note>Show the relative time from a date</note>
             </trans-unit>
             <trans-unit id="1 minute ago">
                 <source>1 minute ago</source>
-                <note>Show the relative time from a date</note>
                 <target>vor einer Minute</target>
+                <note>Show the relative time from a date</note>
             </trans-unit>
             <trans-unit id="Currently Available">
                 <source>Currently Available</source>
-                <note>Online Episodes Channel Name</note>
                 <target>Derzeit verfügbar</target>
+                <note>Online Episodes Channel Name</note>
             </trans-unit>
             <trans-unit id="Episodes">
                 <source>Episodes</source>
-                <note>ProgramDetailsViewController: Episodes Title For Header</note>
                 <target>Episoden</target>
+                <note>ProgramDetailsViewController: Episodes Title For Header</note>
             </trans-unit>
             <trans-unit id="Highlights">
                 <source>Highlights</source>
-                <note>Category: Highlights</note>
                 <target>Highlights</target>
+                <note>Category: Highlights</note>
             </trans-unit>
-            <trans-unit id="Live stream is available in %@">
-                <source>Live stream is available in %@</source>
-                <note>Live Stream Not Available Dialog Message</note>
-                <target>Livestream is verfügbar in %@</target>
+            <trans-unit id="Livestream is available in %@">
+                <source>Livestream is available in %@</source>
+                <note>Livestream Not Available Dialog Message</note>
+                <target>Livestream ist verfügbar in %@</target>
             </trans-unit>
-            <trans-unit id="Live stream is currently not available">
-                <source>Live stream is currently not available</source>
-                <note>Live Stream Not Available Dialog Unknown Time</note>
-                <target>Live stream is currently not available</target>
+            <trans-unit id="Livestream is currently not available">
+                <source>Livestream is currently not available</source>
+                <note>Livestream Not Available Dialog Unknown Time</note>
+                <target>Livestream ist derzeit nicht verfügbar</target>
             </trans-unit>
             <trans-unit id="Most Viewed">
                 <source>Most Viewed</source>
-                <note>Category: Most Viewed</note>
                 <target>Meist gesehen</target>
+                <note>Category: Most Viewed</note>
             </trans-unit>
             <trans-unit id="Newest">
                 <source>Newest</source>
-                <note>Category: Newest</note>
                 <target>Neuesten</target>
+                <note>Category: Newest</note>
             </trans-unit>
             <trans-unit id="OK">
                 <source>OK</source>
-                <note>Live Stream Not Available Dialog OK Button</note>
                 <target>OK</target>
+                <note>Livestream Not Available Dialog OK Button</note>
             </trans-unit>
             <trans-unit id="Programs">
                 <source>Programs</source>
-                <note>ProgramsTableViewController - Title</note>
                 <target>Programme</target>
+                <note>ProgramsTableViewController - Title</note>
             </trans-unit>
             <trans-unit id="Recommentations">
                 <source>Recommentations</source>
-                <note>Category: Recommentations</note>
                 <target>Empfehlungen</target>
+                <note>Category: Recommentations</note>
             </trans-unit>
             <trans-unit id="just now">
                 <source>just now</source>
-                <note>Show the relative time from a date</note>
                 <target>gerade jetzt</target>
+                <note>Show the relative time from a date</note>
             </trans-unit>
         </body>
     </file>
