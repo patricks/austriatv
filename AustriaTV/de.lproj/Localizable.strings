@@ -1,0 +1,54 @@
+/* Show the relative time from a date */
+"%.f days ago" = "vor %.f Tagen";
+
+/* Show the relative time from a date */
+"%.f hours ago" = "vor %.f Stunden";
+
+/* Show the relative time from a date */
+"%.f minutes ago" = "vor %.f Minuten";
+
+/* Show the relative time from a date */
+"%.f seconds ago" = "vor %.f Sekunden";
+
+/* Show the relative time from a date */
+"1 day ago" = "vor einem Tag";
+
+/* Show the relative time from a date */
+"1 hour ago" = "vor einer Stunde";
+
+/* Show the relative time from a date */
+"1 minute ago" = "vor einer Minute";
+
+/* Online Episodes Channel Name */
+"Currently Available" = "Derzeit verfügbar";
+
+/* ProgramDetailsViewController: Episodes Title For Header */
+"Episodes" = "Episoden";
+
+/* Category: Highlights */
+"Highlights" = "Highlights";
+
+/* Live Stream Not Available Dialog Message */
+"Live stream is available in %@" = "Livestream is verfügbar in %@";
+
+/* Live Stream Not Available Dialog Unknown Time */
+"Live stream is currently not available" = "Live stream is currently not available";
+
+/* Category: Most Viewed */
+"Most Viewed" = "Meist gesehen";
+
+/* Category: Newest */
+"Newest" = "Neuesten";
+
+/* Live Stream Not Available Dialog OK Button */
+"OK" = "OK";
+
+/* ProgramsTableViewController - Title */
+"Programs" = "Programme";
+
+/* Category: Recommentations */
+"Recommentations" = "Empfehlungen";
+
+/* Show the relative time from a date */
+"just now" = "gerade jetzt";
+

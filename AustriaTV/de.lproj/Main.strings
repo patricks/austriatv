@@ -1,0 +1,15 @@
+/* Class = "UITabBarItem"; title = "Overview"; ObjectID = "ctz-xd-c4Y"; */
+"ctz-xd-c4Y.title" = "Übersicht";
+
+/* Class = "UITabBarItem"; title = "Programs"; ObjectID = "kdK-TC-XR2"; */
+"kdK-TC-XR2.title" = "Programme";
+
+/* Class = "UITabBarItem"; title = "Live"; ObjectID = "lEf-Rl-PGS"; */
+"lEf-Rl-PGS.title" = "Live";
+
+/* Class = "UISegmentedControl"; qHM-ro-xLd.segmentTitles[0] = "All Programs"; ObjectID = "qHM-ro-xLd"; */
+"qHM-ro-xLd.segmentTitles[0]" = "Alle Programme";
+
+/* Class = "UISegmentedControl"; qHM-ro-xLd.segmentTitles[1] = "Favorites"; ObjectID = "qHM-ro-xLd"; */
+"qHM-ro-xLd.segmentTitles[1]" = "Favoriten";
+
