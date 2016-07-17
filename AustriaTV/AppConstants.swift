@@ -26,5 +26,5 @@ struct AppConstants {
     static let  ActivityIndicatorColor = UIColor.whiteColor()
     
     // Notifications
-    static let favoritesUpdatedKey = "at.helmsdeep.AustriaTV.favorites.updated"
+    static let FavoritesUpdatedKey = "at.helmsdeep.AustriaTV.favorites.updated"
 }

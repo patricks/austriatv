@@ -143,12 +143,12 @@ class ProgramsTableViewController: UITableViewController {
         // get notifications for if beacons updates appear
         NSNotificationCenter.defaultCenter().addObserver(self,
                                                          selector: #selector(ProgramsTableViewController.onFavoritesUpdated(_:)),
-                                                         name: AppConstants.favoritesUpdatedKey,
+                                                         name: AppConstants.FavoritesUpdatedKey,
                                                          object: nil)
     }
     
     private func removeNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(AppConstants.favoritesUpdatedKey)
+        NSNotificationCenter.defaultCenter().removeObserver(AppConstants.FavoritesUpdatedKey)
     }
     
     func onFavoritesUpdated(notification: NSNotification) {
