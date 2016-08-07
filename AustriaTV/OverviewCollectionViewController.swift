@@ -8,7 +8,6 @@
 
 import UIKit
 import Kingfisher
-import Crashlytics
 
 class OverviewCollectionViewController: UICollectionViewController {
     
@@ -31,9 +30,6 @@ class OverviewCollectionViewController: UICollectionViewController {
         super.viewDidAppear(animated)
         
         getDataFromServer()
-        
-        // analytics
-        Answers.logCustomEventWithName("ViewController", customAttributes: ["ViewControllerSelected": "OverviewViewController"])
     }
     
     // MARK: UI

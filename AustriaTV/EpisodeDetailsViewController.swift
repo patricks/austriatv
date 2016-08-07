@@ -9,7 +9,6 @@
 import UIKit
 import AVKit
 import Kingfisher
-import Crashlytics
 
 class EpisodeDetailsViewController: UIViewController {
     
@@ -26,13 +25,6 @@ class EpisodeDetailsViewController: UIViewController {
         // reset the labels
         episodeTitleLabel.text = nil
         durationLabel.text = nil
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // analytics
-        Answers.logCustomEventWithName("ViewController", customAttributes: ["ViewControllerSelected": "EpisodeDetailsViewController"])
     }
     
     deinit {
@@ -257,11 +249,6 @@ class EpisodeDetailsViewController: UIViewController {
         
         let player = AVQueuePlayer(items: items)
         
-        // track playback
-        if let item = items.first {
-            trackPlayback(item)
-        }
-        
         // get notification if last segment has finished playing
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: #selector(EpisodeDetailsViewController.playerDidFinishPlaying(_:)),
@@ -273,17 +260,5 @@ class EpisodeDetailsViewController: UIViewController {
         self.presentViewController(avPlayerController, animated: true, completion: { () -> Void in
             player.play()
         })
-    }
-    
-    // MARK: User Tracking
-    
-    private func trackPlayback(avPlayerItem: AVPlayerItem) {
-        for metadata in avPlayerItem.externalMetadata {
-            if metadata.identifier == AVMetadataCommonIdentifierTitle {
-                if let title = metadata.value as? String {
-                    Answers.logCustomEventWithName("Playing Episode", customAttributes: ["Name": title])
-                }
-            }
-        }
     }
 }

@@ -8,7 +8,6 @@
 
 import UIKit
 import Kingfisher
-import Crashlytics
 
 class LiveCollectionViewController: UICollectionViewController {
     
@@ -33,9 +32,6 @@ class LiveCollectionViewController: UICollectionViewController {
         super.viewDidAppear(animated)
         
         getDataFromServer()
-        
-        // analytics
-        Answers.logCustomEventWithName("ViewController", customAttributes: ["ViewControllerSelected": "LiveCollectionViewController"])
     }
     
     private func setupLoadingIndicator() {

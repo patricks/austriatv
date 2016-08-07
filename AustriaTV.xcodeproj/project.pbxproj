@@ -33,8 +33,6 @@
 		CD039DC01C83732A009F2BF2 /* AFDateExtension+NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD039DBF1C83732A009F2BF2 /* AFDateExtension+NSDate.swift */; };
 		CD1CD25B1CA680E000B74CE5 /* EpisodeDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1CD25A1CA680E000B74CE5 /* EpisodeDetailsResponse.swift */; };
 		CD1CD2601CA6AFFA00B74CE5 /* LiveCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1CD25F1CA6AFFA00B74CE5 /* LiveCollectionViewController.swift */; };
-		CD3C84DC1CBCD67D00C1A34B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD3C84DA1CBCD67D00C1A34B /* Fabric.framework */; };
-		CD3C84DD1CBCD67D00C1A34B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD3C84DB1CBCD67D00C1A34B /* Crashlytics.framework */; };
 		CD3C84DF1CBD082E00C1A34B /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3C84DE1CBD082E00C1A34B /* SettingsManager.swift */; };
 		CD715FC11C8C9A2C00097F7A /* Mopius+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD715FC01C8C9A2C00097F7A /* Mopius+String.swift */; };
 		CDDBB3ED1CAE8494009E755E /* Live.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDDBB3EC1CAE8494009E755E /* Live.storyboard */; };
@@ -82,8 +80,6 @@
 		CD039DBF1C83732A009F2BF2 /* AFDateExtension+NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AFDateExtension+NSDate.swift"; sourceTree = "<group>"; };
 		CD1CD25A1CA680E000B74CE5 /* EpisodeDetailsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeDetailsResponse.swift; sourceTree = "<group>"; };
 		CD1CD25F1CA6AFFA00B74CE5 /* LiveCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCollectionViewController.swift; sourceTree = "<group>"; };
-		CD3C84DA1CBCD67D00C1A34B /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		CD3C84DB1CBCD67D00C1A34B /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		CD3C84DE1CBD082E00C1A34B /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		CD715FC01C8C9A2C00097F7A /* Mopius+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mopius+String.swift"; sourceTree = "<group>"; };
 		CDDBB3EC1CAE8494009E755E /* Live.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Live.storyboard; sourceTree = "<group>"; };
@@ -109,10 +105,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD039DBD1C836288009F2BF2 /* Kingfisher.framework in Frameworks */,
-				CD3C84DC1CBCD67D00C1A34B /* Fabric.framework in Frameworks */,
 				CD039D8D1C80A3E0009F2BF2 /* Alamofire.framework in Frameworks */,
 				CD039D8E1C80A3E0009F2BF2 /* AlamofireObjectMapper.framework in Frameworks */,
-				CD3C84DD1CBCD67D00C1A34B /* Crashlytics.framework in Frameworks */,
 				CD039D8F1C80A3E0009F2BF2 /* ObjectMapper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,8 +153,6 @@
 		CD039D831C809C3B009F2BF2 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				CD3C84DA1CBCD67D00C1A34B /* Fabric.framework */,
-				CD3C84DB1CBCD67D00C1A34B /* Crashlytics.framework */,
 				CD039D8A1C80A3E0009F2BF2 /* Alamofire.framework */,
 				CD039D8B1C80A3E0009F2BF2 /* AlamofireObjectMapper.framework */,
 				CD039DBC1C836288009F2BF2 /* Kingfisher.framework */,
@@ -311,7 +303,6 @@
 				CD039D671C8099C9009F2BF2 /* Frameworks */,
 				CD039D681C8099C9009F2BF2 /* Resources */,
 				CD039D801C809BA4009F2BF2 /* ShellScript */,
-				CD3C84D91CBCD65C00C1A34B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -391,19 +382,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-		CD3C84D91CBCD65C00C1A34B /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run ba82d569acb89978780ba729a79a15d4d58ad8ec 791a58c8f623288f0f01b294b030b31f358ac21972e98fdfbd8ad3712c0736bd";
 		};
 /* End PBXShellScriptBuildPhase section */
 

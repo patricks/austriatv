@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Crashlytics
 
 class ProgramsTableViewController: UITableViewController {
     
@@ -46,13 +45,6 @@ class ProgramsTableViewController: UITableViewController {
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // analytics
-        Answers.logCustomEventWithName("ViewController", customAttributes: ["ViewControllerSelected": "ProgramsTableViewController"])
-    }
-    
     deinit {
         removeNotifications()
     }
@@ -89,14 +81,8 @@ class ProgramsTableViewController: UITableViewController {
             getStoredPrograms()
             
             visiblePrograms = favoritePrograms
-            
-            // analytics
-            Answers.logCustomEventWithName("ProgramFilter", customAttributes: ["FilterSelected": "Favorites"])
         default:
             visiblePrograms = allPrograms
-            
-            // analytics
-            Answers.logCustomEventWithName("ProgramFilter", customAttributes: ["FilterSelected": "All"])
         }
         
         tableView.reloadData()

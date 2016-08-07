@@ -8,7 +8,6 @@
 
 import UIKit
 import Kingfisher
-import Crashlytics
 
 class ProgramDetailsViewController: UIViewController {
     
@@ -33,13 +32,6 @@ class ProgramDetailsViewController: UIViewController {
         // clear the view
         programNameLabel.text = ""
         favoriteButton.hidden = true
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // analytics
-        Answers.logCustomEventWithName("ViewController", customAttributes: ["ViewControllerSelected": "ProgramDetailsViewController"])
     }
     
     private func setProgram() {
