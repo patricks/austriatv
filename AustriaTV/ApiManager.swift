@@ -21,7 +21,7 @@ class ApiManager {
     func getMostViewed(_ completion: @escaping (_ successful: Bool, _ teaserItems: [Teaser]?) -> ()) {
         
         getTeaserItemsForCategory(.mostViewed) { (successful, teaserItems) -> () in
-            completion(successful: successful, teaserItems: teaserItems)
+            completion(successful, teaserItems)
         }
     }
     
@@ -31,7 +31,7 @@ class ApiManager {
     func getNewest(_ completion: @escaping (_ successful: Bool, _ teaserItems: [Teaser]?) -> ()) {
         
         getTeaserItemsForCategory(.newest) { (successful, teaserItems) -> () in
-            completion(successful: successful, teaserItems: teaserItems)
+            completion(successful, teaserItems)
         }
     }
     
@@ -41,7 +41,7 @@ class ApiManager {
     func getRecommended(_ completion: @escaping (_ successful: Bool, _ teaserItems: [Teaser]?) -> ()) {
         
         getTeaserItemsForCategory(.recommendations) { (successful, teaserItems) -> () in
-            completion(successful: successful, teaserItems: teaserItems)
+            completion(successful, teaserItems)
         }
     }
     
@@ -51,7 +51,7 @@ class ApiManager {
     func getHighlights(_ completion: @escaping (_ successful: Bool, _ teaserItems: [Teaser]?) -> ()) {
         
         getTeaserItemsForCategory(.hightlights) { (successful, teaserItems) -> () in
-            completion(successful: successful, teaserItems: teaserItems)
+            completion(successful, teaserItems)
         }
     }
     
@@ -81,14 +81,14 @@ class ApiManager {
             
             .validate()
             
-            .responseObject { (response: Response<TeaserItemsResponse, NSError>) -> Void in
+            .responseObject { (response: DataResponse<TeaserItemsResponse>) -> Void in
                 
                 switch response.result {
                 case .success(let value):
-                    completion(successful: true, teaserItems: value.items)
+                    completion(true, value.items)
                 case .failure(let error):
                     Log.debug(error.localizedDescription)
-                    completion(successful: false, teaserItems: nil)
+                    completion(false, nil)
                 }
         }
     }
@@ -101,14 +101,14 @@ class ApiManager {
             
             .validate()
             
-            .responseObject { (response: Response<EpisodeDetailResponse, NSError>) -> Void in
+            .responseObject { (response: DataResponse<EpisodeDetailResponse>) -> Void in
                 
                 switch response.result {
                 case .success(let value):
-                    completion(successful: true, episode: value.episode)
+                    completion(true, value.episode)
                 case .failure(let error):
                     Log.debug(error.localizedDescription)
-                    completion(successful: false, episode: nil)
+                    completion(false, nil)
                 }
         }
     }
@@ -118,14 +118,14 @@ class ApiManager {
             
             .validate()
             
-            .responseObject { (response: Response<EpisodeShortsResponse, NSError>) -> Void in
+            .responseObject { (response: DataResponse<EpisodeShortsResponse>) -> Void in
                 
                 switch response.result {
                 case .success(let value):
-                    completion(successful: true, episodes: value.episodes)
+                    completion(true, value.episodes)
                 case .failure(let error):
                     Log.debug(error.localizedDescription)
-                    completion(successful: false, episodes: nil)
+                    completion(false, nil)
                 }
         }
     }
@@ -137,14 +137,14 @@ class ApiManager {
             
             .validate()
             
-            .responseObject { (response: Response<ProgramShortsResponse, NSError>) -> Void in
+            .responseObject { (response: DataResponse<ProgramShortsResponse>) -> Void in
                 
                 switch response.result {
                 case .success(let value):
-                    completion(successful: true, programs: value.programs)
+                    completion(true, value.programs)
                 case .failure(let error):
                     Log.debug(error.localizedDescription)
-                    completion(successful: false, programs: nil)
+                    completion(false, nil)
                 }
             }
     }
@@ -156,14 +156,14 @@ class ApiManager {
         
             .validate()
         
-            .responseObject { (response: Response<EpisodeDetailsResponse, NSError>) -> Void in
+            .responseObject { (response: DataResponse<EpisodeDetailsResponse>) -> Void in
                 
                 switch response.result {
                 case .success(let value):
-                    completion(successful: true, episodes: value.episodes)
+                    completion(true, value.episodes)
                 case .failure(let error):
                     Log.debug(error.localizedDescription)
-                    completion(successful: false,episodes: nil)
+                    completion(false,nil)
                 }
             }
     }

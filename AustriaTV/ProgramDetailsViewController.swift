@@ -45,7 +45,7 @@ class ProgramDetailsViewController: UIViewController {
             let placeholderImage = UIImage(named: "Episode_Details_Placeholder")
             
             if let imageURL = program.getImageURL() {
-                programImageView.kf_setImageWithURL(imageURL, placeholderImage: placeholderImage)
+                programImageView.kf.setImage(with: imageURL, placeholder: placeholderImage)
             } else {
                 programImageView.image = placeholderImage
             }

@@ -12,9 +12,9 @@ import ObjectMapper
 class EpisodeDetailResponse: Mappable {
     var episode: Episode?
     
-    required init?(_ map: Map) { }
+    required init?(map: Map) { }
     
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         episode <- map["episodeDetail"]
     }
 }

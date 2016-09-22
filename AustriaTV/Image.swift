@@ -56,7 +56,7 @@ class Image: NSObject, Mappable, NSCoding {
     
     required init?(_ map: Map) { }
     
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         url <- map[urlKey]
         name <- map[nameKey] // TODO: set a enum type for the different image types
         width <- map[widthKey]

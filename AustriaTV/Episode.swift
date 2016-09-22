@@ -11,7 +11,7 @@ import ObjectMapper
 
 class Episode: Mappable {
     
-    internal enum Type {
+    internal enum `Type` {
         case short
         case detail
     }
@@ -51,9 +51,9 @@ class Episode: Mappable {
         }
     }
     
-    required init?(_ map: Map) { }
+    required init?(map: Map) { }
     
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         
         let dateTransform = TransformOf<Date, String>(fromJSON: { (value: String?) -> Date? in
             // transform value from String? to NSDate?
@@ -65,7 +65,7 @@ class Episode: Mappable {
             }, toJSON: { (value: Date?) -> String? in
                 // transform value from NSDate? to String?
                 if let value = value {
-                    return String(value)
+                    return String(describing: value)
                 }
                 return nil
         })

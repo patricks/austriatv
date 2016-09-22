@@ -14,7 +14,7 @@ class TeaserItemsResponse: Mappable {
     
     required init?(_ map: Map) { }
     
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         items <- map["teaserItems"]
     }
 }
