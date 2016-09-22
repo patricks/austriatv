@@ -56,10 +56,6 @@ class ProgramsTableViewController: UITableViewController {
         }
     }
     
-    deinit {
-        removeNotifications()
-    }
-    
     // MARK: UI
     
     fileprivate func setupUI() {
@@ -142,10 +138,6 @@ class ProgramsTableViewController: UITableViewController {
                                                          selector: #selector(ProgramsTableViewController.onFavoritesUpdated(_:)),
                                                          name: NSNotification.Name(rawValue: AppConstants.FavoritesUpdatedKey),
                                                          object: nil)
-    }
-    
-    fileprivate func removeNotifications() {
-        NotificationCenter.default.removeObserver(AppConstants.FavoritesUpdatedKey)
     }
     
     func onFavoritesUpdated(_ notification: Notification) {

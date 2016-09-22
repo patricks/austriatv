@@ -1,9 +1,8 @@
 //
-//  Mopius+String.swift
-//  Quotes
+//  Patricks+String.swift
 //
-//  Created by Patrick Steiner on 17.11.15.
-//  Copyright © 2015 Megalol. All rights reserved.
+//  Created by Patrick Steiner on 01.04.16.
+//  Copyright © 2016 Patrick. All rights reserved.
 //
 
 import UIKit

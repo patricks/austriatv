@@ -54,7 +54,7 @@ class Image: NSObject, Mappable, NSCoding {
         }
     }
     
-    required init?(_ map: Map) { }
+    required init?(map: Map) { }
     
     func mapping(map: Map) {
         url <- map[urlKey]

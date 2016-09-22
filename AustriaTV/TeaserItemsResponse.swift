@@ -12,7 +12,7 @@ import ObjectMapper
 class TeaserItemsResponse: Mappable {
     var items: [Teaser]?
     
-    required init?(_ map: Map) { }
+    required init?(map: Map) { }
     
     func mapping(map: Map) {
         items <- map["teaserItems"]

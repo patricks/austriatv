@@ -13,7 +13,7 @@ class Video: Mappable {
     
     var streamingURL: String?
     
-    required init?(_ map: Map) { }
+    required init?(map: Map) { }
     
     func mapping(map: Map) {
         streamingURL <- map["streamingUrl"]

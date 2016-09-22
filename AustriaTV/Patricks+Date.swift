@@ -1,6 +1,5 @@
 //
-//  Patricks+NSDate.swift
-//  AustriaTV
+//  Patricks+Date.swift
 //
 //  Created by Patrick Steiner on 01.04.16.
 //  Copyright © 2016 Patrick. All rights reserved.

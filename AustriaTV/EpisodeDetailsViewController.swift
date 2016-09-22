@@ -27,10 +27,6 @@ class EpisodeDetailsViewController: UIViewController {
         durationLabel.text = nil
     }
     
-    deinit {
-        removeNotifications()
-    }
-    
     var episode: Episode? {
         didSet {
             setEpisode()
@@ -78,7 +74,7 @@ class EpisodeDetailsViewController: UIViewController {
             
             if let imageURL = episode.getFullImageURL() {
                 if episodeImageView != nil {
-                    episodeImageView.kf_setImageWithURL(imageURL, placeholderImage: placeholderImage)
+                    episodeImageView.kf.setImage(with: imageURL, placeholder: placeholderImage)
                 }
             } else {
                 episodeImageView.image = placeholderImage
@@ -93,10 +89,6 @@ class EpisodeDetailsViewController: UIViewController {
     }
     
     // MARK: - Notifications
-    
-    fileprivate func removeNotifications() {
-        NotificationCenter.default.removeObserver(NSNotification.Name.AVPlayerItemDidPlayToEndTime)
-    }
     
     func playerDidFinishPlaying(_ notification: Notification) {
         Log.debug(#function)

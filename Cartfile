@@ -5,4 +5,4 @@ github "tristanhimmelman/AlamofireObjectMapper" ~> 4.0
 github "onevcat/Kingfisher" ~> 3.0
 
 # Date
-github "melvitax/AFDateHelper"
+github "melvitax/DateHelper"

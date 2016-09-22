@@ -201,7 +201,7 @@ extension LiveCollectionViewController {
         
         // Configure the cell
         if let imageURL = episode.getPreviewImageURL() {
-            cell.teaserImageView.kf_setImageWithURL(imageURL, placeholderImage: placeholderImage)
+            cell.teaserImageView.kf.setImage(with: imageURL, placeholder: placeholderImage)
         } else {
             cell.teaserImageView.image = placeholderImage
         }

@@ -28,7 +28,7 @@ enum APIRequest: URLRequestConvertible {
     // Livestreams
     case livestreams()
     
-    var URLRequest: NSMutableURLRequest {
+    func asURLRequest() throws -> URLRequest {
         let result: (path: String, parameters: [String: AnyObject]?, httpMethod: String) = {
             
             switch self {
@@ -57,19 +57,17 @@ enum APIRequest: URLRequestConvertible {
             case .livestreams():
                 let now = Date()
                 
-                let startTime = now.toString(format: .custom("yyyyMMddHHmm"))
-                let endTime = now.dateByAddingDays(1).toString(format: .custom("yyyyMMddHHmm"))
+                let startTime = now.toString(.custom("yyyyMMddHHmm"))
+                let endTime = now.dateByAddingDays(1).toString(.custom("yyyyMMddHHmm"))
                 
                 return ("\(AppConstants.BaseApiPath)/livestreams/from/\(startTime)/till/\(endTime)/detail", nil, "GET")
             }
         }()
         
-        let URL = Foundation.URL(string: AppConstants.ApiURL)
-        let URLRequest = NSMutableURLRequest(url: URL!.appendingPathComponent(result.path))
-        URLRequest.httpMethod = result.httpMethod
+        let url = Foundation.URL(string: AppConstants.ApiURL)
+        var urlRequest = URLRequest(url: (url?.appendingPathComponent(result.path))!)
+        urlRequest.httpMethod = result.httpMethod
         
-        let encoding = Alamofire.ParameterEncoding.url
-        
-        return encoding.encode(URLRequest, parameters: result.parameters).0
+        return try URLEncoding.default.encode(urlRequest, with: result.parameters)
     }
 }

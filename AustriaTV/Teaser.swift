@@ -15,9 +15,9 @@ class Teaser: Mappable {
     var title: String?
     var images: [Image]?
     
-    required init?(_ map: Map) { }
+    required init?(map: Map) { }
     
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         episodeId <- map["episodeId"]
         title <- map["title"]
         images <- map["images"]

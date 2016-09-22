@@ -15,7 +15,7 @@ class Description: Mappable {
     var text: String?
     var maxLength: Int?
     
-    required init?(_ map: Map) { }
+    required init?(map: Map) { }
     
     func mapping(map: Map) {
         fieldName <- map["fieldName"]

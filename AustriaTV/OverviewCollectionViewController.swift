@@ -153,7 +153,7 @@ extension OverviewCollectionViewController {
             
             // Configure the cell
             if let imageURL = teaser.getImageURL() {
-                cell.teaserImageView.kf_setImageWithURL(imageURL, placeholderImage: placeholderImage)
+                cell.teaserImageView.kf.setImage(with: imageURL, placeholder: placeholderImage)
             } else {
                 cell.teaserImageView.image = placeholderImage
             }

@@ -8,6 +8,7 @@
 
 import Foundation
 import ObjectMapper
+import DateHelper
 
 class Episode: Mappable {
     
@@ -95,7 +96,7 @@ class Episode: Mappable {
         }
         
         if let _ = date {
-            let dateString = date!.toString(dateStyle: .short, timeStyle: .short, doesRelativeDateFormatting: true)
+            let dateString = date!.toString(.short, timeStyle: .short, doesRelativeDateFormatting: true)
             outputTitle += " \(dateString)"
         }
         

@@ -15,9 +15,9 @@ class Channel: Mappable {
     var name: String?
     var reel: String?
     
-    required init?(_ map: Map) { }
+    required init?(map: Map) { }
     
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         channelId <- map["channelId"]
         name <- map["name"]
         reel <- map["reel"]

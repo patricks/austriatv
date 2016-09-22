@@ -11,7 +11,7 @@ import ObjectMapper
 
 class Program: NSObject, Mappable, NSCoding {
     
-    enum Type {
+    enum `Type` {
         case short
         case detail
     }
@@ -38,7 +38,7 @@ class Program: NSObject, Mappable, NSCoding {
     fileprivate let imagesKey = "images"
     fileprivate let programDescriptionKey = "programDescription"
     
-    required init?(_ map: Map) { }
+    required init?(map: Map) { }
     
     required init?(coder aDecoder: NSCoder) {
         self.programId = aDecoder.decodeInteger(forKey: programIdKey)
@@ -74,7 +74,7 @@ class Program: NSObject, Mappable, NSCoding {
         }
     }
     
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         programId <- map[programIdKey]
         name <- map[nameKey]
         images <- map[imagesKey]
