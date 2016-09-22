@@ -11,14 +11,14 @@ import Kingfisher
 
 class OverviewCollectionViewController: UICollectionViewController {
     
-    private var activityIndicatorView: UIActivityIndicatorView!
+    fileprivate var activityIndicatorView: UIActivityIndicatorView!
     
-    private let reuseCellIdentifier = "TeaserCell"
-    private let reuseHeaderIdentifier = "TeaserHeader"
+    fileprivate let reuseCellIdentifier = "TeaserCell"
+    fileprivate let reuseHeaderIdentifier = "TeaserHeader"
     
-    private let apiManager = ApiManager()
+    fileprivate let apiManager = ApiManager()
     
-    private var teasers = [Int: [Teaser]]()
+    fileprivate var teasers = [Int: [Teaser]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class OverviewCollectionViewController: UICollectionViewController {
         setupLoadingIndicator()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         getDataFromServer()
@@ -34,8 +34,8 @@ class OverviewCollectionViewController: UICollectionViewController {
     
     // MARK: UI
     
-    private func setupLoadingIndicator() {
-        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+    fileprivate func setupLoadingIndicator() {
+        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         activityIndicatorView.center = self.view.center
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.color = AppConstants.ActivityIndicatorColor
@@ -47,13 +47,13 @@ class OverviewCollectionViewController: UICollectionViewController {
 
     // MARK: Data Source
     
-    private func getDataFromServer() {
+    fileprivate func getDataFromServer() {
         
         // highlights
         apiManager.getHighlights { (successful, teaserItems) in
             if successful {
                 if let _ = teaserItems {
-                    self.teasers[TeaserCategory.Hightlights.hashValue] = teaserItems!
+                    self.teasers[TeaserCategory.hightlights.hashValue] = teaserItems!
                     
                     self.activityIndicatorView.stopAnimating()
                     
@@ -66,7 +66,7 @@ class OverviewCollectionViewController: UICollectionViewController {
         apiManager.getNewest { (successful, teaserItems) in
             if successful {
                 if let _ = teaserItems {
-                    self.teasers[TeaserCategory.Newest.hashValue] = teaserItems!
+                    self.teasers[TeaserCategory.newest.hashValue] = teaserItems!
                     
                     self.activityIndicatorView.stopAnimating()
                     
@@ -79,7 +79,7 @@ class OverviewCollectionViewController: UICollectionViewController {
         apiManager.getMostViewed { (successful, teaserItems) in
             if successful {
                 if let _ = teaserItems {
-                    self.teasers[TeaserCategory.MostViewed.hashValue] = teaserItems!
+                    self.teasers[TeaserCategory.mostViewed.hashValue] = teaserItems!
                     
                     self.activityIndicatorView.stopAnimating()
                     
@@ -92,7 +92,7 @@ class OverviewCollectionViewController: UICollectionViewController {
         apiManager.getRecommended { (successful, teaserItems) in
             if successful {
                 if let _ = teaserItems {
-                    self.teasers[TeaserCategory.Recommendations.hashValue] = teaserItems!
+                    self.teasers[TeaserCategory.recommendations.hashValue] = teaserItems!
                     
                     self.activityIndicatorView.stopAnimating()
                     
@@ -102,18 +102,18 @@ class OverviewCollectionViewController: UICollectionViewController {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowEpisode" {
-            if let indexPaths = collectionView!.indexPathsForSelectedItems() {
+            if let indexPaths = collectionView!.indexPathsForSelectedItems {
                 if let indexPath = indexPaths.first {
-                    if let teasers = teasers[indexPath.section] {
-                        let teaser = teasers[indexPath.row]
+                    if let teasers = teasers[(indexPath as NSIndexPath).section] {
+                        let teaser = teasers[(indexPath as NSIndexPath).row]
                         
                         if let episodeId = teaser.episodeId {
                             apiManager.getEpisode(episodeId, completion: { (successful, episode) -> () in
                                 if successful {
                                     if let episode = episode {
-                                        if let viewController = segue.destinationViewController as? EpisodeDetailsViewController {
+                                        if let viewController = segue.destination as? EpisodeDetailsViewController {
                                             viewController.episode = episode
                                         }
                                     }
@@ -131,11 +131,11 @@ class OverviewCollectionViewController: UICollectionViewController {
 
 extension OverviewCollectionViewController {
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return teasers.count
     }
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let teasers = teasers[section] {
             return teasers.count
         }
@@ -143,11 +143,11 @@ extension OverviewCollectionViewController {
         return 0
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseCellIdentifier, forIndexPath: indexPath) as! TeaserCollectionViewCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseCellIdentifier, for: indexPath) as! TeaserCollectionViewCell
         
-        if let teasers = teasers[indexPath.section] {
-            let teaser = teasers[indexPath.row]
+        if let teasers = teasers[(indexPath as NSIndexPath).section] {
+            let teaser = teasers[(indexPath as NSIndexPath).row]
             
             let placeholderImage = UIImage(named: "Overview_Placeholder")
             
@@ -166,20 +166,20 @@ extension OverviewCollectionViewController {
         return cell
     }
     
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         var reusableView: UICollectionReusableView
         
         if kind == UICollectionElementKindSectionHeader {
-            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: reuseHeaderIdentifier, forIndexPath: indexPath) as! OverviewCollectionHeaderView
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: reuseHeaderIdentifier, for: indexPath) as! OverviewCollectionHeaderView
             
-            if let category = TeaserCategory(rawValue: indexPath.section) {
+            if let category = TeaserCategory(rawValue: (indexPath as NSIndexPath).section) {
                 headerView.titleLabel.text = category.description
             }
             
             reusableView = headerView
         } else {
-            reusableView = super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath)
+            reusableView = super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, at: indexPath)
         }
         
         return reusableView

@@ -23,7 +23,7 @@ struct AppConstants {
     static let LightBlue = "3E8FF4".hexColor!
     
     // Indicator
-    static let  ActivityIndicatorColor = UIColor.whiteColor()
+    static let  ActivityIndicatorColor = UIColor.white
     
     // Notifications
     static let FavoritesUpdatedKey = "at.helmsdeep.AustriaTV.favorites.updated"

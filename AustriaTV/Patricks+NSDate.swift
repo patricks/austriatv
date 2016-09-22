@@ -8,13 +8,13 @@
 
 import Foundation
 
-extension NSDate {
-    func isGreaterThanDate(dateToCompare: NSDate) -> Bool {
+extension Date {
+    func isGreaterThanDate(_ dateToCompare: Date) -> Bool {
         //Declare Variables
         var isGreater = false
         
         //Compare Values
-        if self.compare(dateToCompare) == NSComparisonResult.OrderedDescending {
+        if self.compare(dateToCompare) == ComparisonResult.orderedDescending {
             isGreater = true
         }
         
@@ -22,12 +22,12 @@ extension NSDate {
         return isGreater
     }
     
-    func isLessThanDate(dateToCompare: NSDate) -> Bool {
+    func isLessThanDate(_ dateToCompare: Date) -> Bool {
         //Declare Variables
         var isLess = false
         
         //Compare Values
-        if self.compare(dateToCompare) == NSComparisonResult.OrderedAscending {
+        if self.compare(dateToCompare) == ComparisonResult.orderedAscending {
             isLess = true
         }
         
@@ -35,12 +35,12 @@ extension NSDate {
         return isLess
     }
     
-    func equalToDate(dateToCompare: NSDate) -> Bool {
+    func equalToDate(_ dateToCompare: Date) -> Bool {
         //Declare Variables
         var isEqualTo = false
         
         //Compare Values
-        if self.compare(dateToCompare) == NSComparisonResult.OrderedSame {
+        if self.compare(dateToCompare) == ComparisonResult.orderedSame {
             isEqualTo = true
         }
         

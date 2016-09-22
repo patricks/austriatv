@@ -17,46 +17,46 @@ class Image: NSObject, Mappable, NSCoding {
     var height: Int?
     
     // NSCoding and JSON keys
-    private let urlKey = "url"
-    private let nameKey = "name"
-    private let widthKey = "width"
-    private let heightKey = "height"
+    fileprivate let urlKey = "url"
+    fileprivate let nameKey = "name"
+    fileprivate let widthKey = "width"
+    fileprivate let heightKey = "height"
     
     required init?(coder aDecoder: NSCoder) {
-        if let url = aDecoder.decodeObjectForKey(urlKey) as? String {
+        if let url = aDecoder.decodeObject(forKey: urlKey) as? String {
             self.url = url
         }
         
-        if let name = aDecoder.decodeObjectForKey(nameKey) as? String {
+        if let name = aDecoder.decodeObject(forKey: nameKey) as? String {
             self.name = name
         }
         
-        self.width = aDecoder.decodeIntegerForKey(widthKey)
+        self.width = aDecoder.decodeInteger(forKey: widthKey)
         
-        self.height = aDecoder.decodeIntegerForKey(heightKey)
+        self.height = aDecoder.decodeInteger(forKey: heightKey)
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         if let url = self.url {
-            aCoder.encodeObject(url, forKey: urlKey)
+            aCoder.encode(url, forKey: urlKey)
         }
         
         if let name = self.name {
-            aCoder.encodeObject(name, forKey: nameKey)
+            aCoder.encode(name, forKey: nameKey)
         }
         
         if let width = self.width {
-            aCoder.encodeInteger(width, forKey: widthKey)
+            aCoder.encode(width, forKey: widthKey)
         }
         
         if let height = self.height {
-            aCoder.encodeInteger(height, forKey: heightKey)
+            aCoder.encode(height, forKey: heightKey)
         }
     }
     
     required init?(_ map: Map) { }
     
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         url <- map[urlKey]
         name <- map[nameKey] // TODO: set a enum type for the different image types
         width <- map[widthKey]

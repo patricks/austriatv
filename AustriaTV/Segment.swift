@@ -15,7 +15,7 @@ class Segment: Mappable {
     
     required init?(_ map: Map) { }
     
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         videos <- map["videos"]
     }
 }

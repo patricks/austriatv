@@ -13,62 +13,62 @@ enum APIRequest: URLRequestConvertible {
 
     // API Calls
     // General
-    case MostViewed()
-    case Newest()
-    case Recommendations()
-    case Highlights()
+    case mostViewed()
+    case newest()
+    case recommendations()
+    case highlights()
     
     // Episode
-    case Episode(episodeId: Int)
-    case EpisodesByProgram(programId: Int)
+    case episode(episodeId: Int)
+    case episodesByProgram(programId: Int)
     
     // Programs
-    case Programs()
+    case programs()
     
     // Livestreams
-    case Livestreams()
+    case livestreams()
     
     var URLRequest: NSMutableURLRequest {
         let result: (path: String, parameters: [String: AnyObject]?, httpMethod: String) = {
             
             switch self {
-            case .MostViewed():
+            case .mostViewed():
                 return ("\(AppConstants.BaseApiPath)/teaser_content/most_viewed", nil, "GET")
                 
-            case .Newest():
+            case .newest():
                 return ("\(AppConstants.BaseApiPath)/teaser_content/newest", nil, "GET")
                 
-            case .Recommendations():
+            case .recommendations():
                 return ("\(AppConstants.BaseApiPath)/teaser_content/recommendations", nil, "GET")
                 
-            case .Highlights():
+            case .highlights():
                 return ("\(AppConstants.BaseApiPath)/teaser_content/highlights", nil, "GET")
                 
-            case .Episode(let episodeId):
+            case .episode(let episodeId):
                 return ("\(AppConstants.BaseApiPath)/episode/\(episodeId)/", nil, "GET")
                 
-            case .EpisodesByProgram(let programId):
+            case .episodesByProgram(let programId):
                 return ("\(AppConstants.BaseApiPath)/episodes/by_program/\(programId)/", nil, "GET")
                 
-            case .Programs():
+            case .programs():
                 let params = ["page": "\(0)", "entries_per_page": "\(1000)"]
-                return ("\(AppConstants.BaseApiPath)/programs", params, "GET")
+                return ("\(AppConstants.BaseApiPath)/programs", params as [String : AnyObject]?, "GET")
                 
-            case .Livestreams():
-                let now = NSDate()
+            case .livestreams():
+                let now = Date()
                 
-                let startTime = now.toString(format: .Custom("yyyyMMddHHmm"))
-                let endTime = now.dateByAddingDays(1).toString(format: .Custom("yyyyMMddHHmm"))
+                let startTime = now.toString(format: .custom("yyyyMMddHHmm"))
+                let endTime = now.dateByAddingDays(1).toString(format: .custom("yyyyMMddHHmm"))
                 
                 return ("\(AppConstants.BaseApiPath)/livestreams/from/\(startTime)/till/\(endTime)/detail", nil, "GET")
             }
         }()
         
-        let URL = NSURL(string: AppConstants.ApiURL)
-        let URLRequest = NSMutableURLRequest(URL: URL!.URLByAppendingPathComponent(result.path))
-        URLRequest.HTTPMethod = result.httpMethod
+        let URL = Foundation.URL(string: AppConstants.ApiURL)
+        let URLRequest = NSMutableURLRequest(url: URL!.appendingPathComponent(result.path))
+        URLRequest.httpMethod = result.httpMethod
         
-        let encoding = Alamofire.ParameterEncoding.URL
+        let encoding = Alamofire.ParameterEncoding.url
         
         return encoding.encode(URLRequest, parameters: result.parameters).0
     }

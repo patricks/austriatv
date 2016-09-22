@@ -18,9 +18,9 @@ class ApiManager {
     /**
     Get mosted viewed episodes.
     */
-    func getMostViewed(completion: (successful: Bool, teaserItems: [Teaser]?) -> ()) {
+    func getMostViewed(_ completion: @escaping (_ successful: Bool, _ teaserItems: [Teaser]?) -> ()) {
         
-        getTeaserItemsForCategory(.MostViewed) { (successful, teaserItems) -> () in
+        getTeaserItemsForCategory(.mostViewed) { (successful, teaserItems) -> () in
             completion(successful: successful, teaserItems: teaserItems)
         }
     }
@@ -28,9 +28,9 @@ class ApiManager {
     /**
      Get newest episodes.
      */
-    func getNewest(completion: (successful: Bool, teaserItems: [Teaser]?) -> ()) {
+    func getNewest(_ completion: @escaping (_ successful: Bool, _ teaserItems: [Teaser]?) -> ()) {
         
-        getTeaserItemsForCategory(.Newest) { (successful, teaserItems) -> () in
+        getTeaserItemsForCategory(.newest) { (successful, teaserItems) -> () in
             completion(successful: successful, teaserItems: teaserItems)
         }
     }
@@ -38,9 +38,9 @@ class ApiManager {
     /**
      Get recommended episodes.
      */
-    func getRecommended(completion: (successful: Bool, teaserItems: [Teaser]?) -> ()) {
+    func getRecommended(_ completion: @escaping (_ successful: Bool, _ teaserItems: [Teaser]?) -> ()) {
         
-        getTeaserItemsForCategory(.Recommendations) { (successful, teaserItems) -> () in
+        getTeaserItemsForCategory(.recommendations) { (successful, teaserItems) -> () in
             completion(successful: successful, teaserItems: teaserItems)
         }
     }
@@ -48,9 +48,9 @@ class ApiManager {
     /**
      Get recommended episodes.
      */
-    func getHighlights(completion: (successful: Bool, teaserItems: [Teaser]?) -> ()) {
+    func getHighlights(_ completion: @escaping (_ successful: Bool, _ teaserItems: [Teaser]?) -> ()) {
         
-        getTeaserItemsForCategory(.Hightlights) { (successful, teaserItems) -> () in
+        getTeaserItemsForCategory(.hightlights) { (successful, teaserItems) -> () in
             completion(successful: successful, teaserItems: teaserItems)
         }
     }
@@ -58,18 +58,18 @@ class ApiManager {
     /**
      Get the different teaser items.
      */
-    private func getTeaserItemsForCategory(category: TeaserCategory, completion: (successful: Bool, teaserItems: [Teaser]?) -> ()) {
+    fileprivate func getTeaserItemsForCategory(_ category: TeaserCategory, completion: @escaping (_ successful: Bool, _ teaserItems: [Teaser]?) -> ()) {
         var request: APIRequest
         
         switch category {
-        case .MostViewed:
-            request = APIRequest.MostViewed()
-        case .Newest:
-            request = APIRequest.Newest()
-        case .Recommendations:
-            request = APIRequest.Newest()
-        case .Hightlights:
-            request = APIRequest.Highlights()
+        case .mostViewed:
+            request = APIRequest.mostViewed()
+        case .newest:
+            request = APIRequest.newest()
+        case .recommendations:
+            request = APIRequest.newest()
+        case .hightlights:
+            request = APIRequest.highlights()
         }
         
         Alamofire.request(request)
@@ -84,9 +84,9 @@ class ApiManager {
             .responseObject { (response: Response<TeaserItemsResponse, NSError>) -> Void in
                 
                 switch response.result {
-                case .Success(let value):
+                case .success(let value):
                     completion(successful: true, teaserItems: value.items)
-                case .Failure(let error):
+                case .failure(let error):
                     Log.debug(error.localizedDescription)
                     completion(successful: false, teaserItems: nil)
                 }
@@ -96,34 +96,34 @@ class ApiManager {
     
     // MARK: Episode API Calls
     
-    func getEpisode(episodeId: Int, completion: (successful: Bool, episode: Episode?) -> ()) {
-        Alamofire.request(APIRequest.Episode(episodeId: episodeId))
+    func getEpisode(_ episodeId: Int, completion: @escaping (_ successful: Bool, _ episode: Episode?) -> ()) {
+        Alamofire.request(APIRequest.episode(episodeId: episodeId))
             
             .validate()
             
             .responseObject { (response: Response<EpisodeDetailResponse, NSError>) -> Void in
                 
                 switch response.result {
-                case .Success(let value):
+                case .success(let value):
                     completion(successful: true, episode: value.episode)
-                case .Failure(let error):
+                case .failure(let error):
                     Log.debug(error.localizedDescription)
                     completion(successful: false, episode: nil)
                 }
         }
     }
     
-    func getEpisodeByProgram(programId: Int, completion: (successful: Bool, episodes: [Episode]?) -> ()) {
-        Alamofire.request(APIRequest.EpisodesByProgram(programId: programId))
+    func getEpisodeByProgram(_ programId: Int, completion: @escaping (_ successful: Bool, _ episodes: [Episode]?) -> ()) {
+        Alamofire.request(APIRequest.episodesByProgram(programId: programId))
             
             .validate()
             
             .responseObject { (response: Response<EpisodeShortsResponse, NSError>) -> Void in
                 
                 switch response.result {
-                case .Success(let value):
+                case .success(let value):
                     completion(successful: true, episodes: value.episodes)
-                case .Failure(let error):
+                case .failure(let error):
                     Log.debug(error.localizedDescription)
                     completion(successful: false, episodes: nil)
                 }
@@ -132,17 +132,17 @@ class ApiManager {
     
     // MARK: Program API Calls
     
-    func getPrograms(completion: (successful: Bool, programs: [Program]?) -> ()) {
-        Alamofire.request(APIRequest.Programs())
+    func getPrograms(_ completion: @escaping (_ successful: Bool, _ programs: [Program]?) -> ()) {
+        Alamofire.request(APIRequest.programs())
             
             .validate()
             
             .responseObject { (response: Response<ProgramShortsResponse, NSError>) -> Void in
                 
                 switch response.result {
-                case .Success(let value):
+                case .success(let value):
                     completion(successful: true, programs: value.programs)
-                case .Failure(let error):
+                case .failure(let error):
                     Log.debug(error.localizedDescription)
                     completion(successful: false, programs: nil)
                 }
@@ -151,17 +151,17 @@ class ApiManager {
     
     // MARK: Livestream API Calls
     
-    func getLivestreams(completion: (successful: Bool, episodes: [Episode]?) -> ()) {
-        Alamofire.request(APIRequest.Livestreams())
+    func getLivestreams(_ completion: @escaping (_ successful: Bool, _ episodes: [Episode]?) -> ()) {
+        Alamofire.request(APIRequest.livestreams())
         
             .validate()
         
             .responseObject { (response: Response<EpisodeDetailsResponse, NSError>) -> Void in
                 
                 switch response.result {
-                case .Success(let value):
+                case .success(let value):
                     completion(successful: true, episodes: value.episodes)
-                case .Failure(let error):
+                case .failure(let error):
                     Log.debug(error.localizedDescription)
                     completion(successful: false,episodes: nil)
                 }

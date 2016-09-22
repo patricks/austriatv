@@ -326,6 +326,7 @@
 					CD039D691C8099C9009F2BF2 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 6X47Q5RERE;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -554,6 +555,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = at.helmsdeep.AustriaTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -574,6 +576,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = at.helmsdeep.AustriaTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

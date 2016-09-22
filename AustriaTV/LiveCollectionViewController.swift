@@ -8,19 +8,39 @@
 
 import UIKit
 import Kingfisher
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class LiveCollectionViewController: UICollectionViewController {
     
-    private var activityIndicatorView: UIActivityIndicatorView!
+    fileprivate var activityIndicatorView: UIActivityIndicatorView!
     
-    private let reuseCellIdentifier = "TeaserCell"
-    private let reuseHeaderIdentifier = "TeaserHeader"
+    fileprivate let reuseCellIdentifier = "TeaserCell"
+    fileprivate let reuseHeaderIdentifier = "TeaserHeader"
     
-    private let apiManager = ApiManager()
+    fileprivate let apiManager = ApiManager()
     
-    private var sortedChannels = [(String, [Episode])]()
+    fileprivate var sortedChannels = [(String, [Episode])]()
     
-    private var reloadTimer = NSTimer()
+    fileprivate var reloadTimer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,14 +48,14 @@ class LiveCollectionViewController: UICollectionViewController {
         setupLoadingIndicator()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         getDataFromServer()
     }
     
-    private func setupLoadingIndicator() {
-        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+    fileprivate func setupLoadingIndicator() {
+        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         activityIndicatorView.center = self.view.center
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.color = AppConstants.ActivityIndicatorColor
@@ -47,7 +67,7 @@ class LiveCollectionViewController: UICollectionViewController {
     
     // MARK: Data Source
     
-    private func getDataFromServer() {
+    fileprivate func getDataFromServer() {
         
         apiManager.getLivestreams { (successful, episodes) in
             if successful {
@@ -62,7 +82,7 @@ class LiveCollectionViewController: UICollectionViewController {
         }
     }
     
-    private func parseChannels(episodes: [Episode]) -> [(String, [Episode])] {
+    fileprivate func parseChannels(_ episodes: [Episode]) -> [(String, [Episode])] {
         var channels = [String: [Episode]]()
         
         var durationToLiveStream: Int?
@@ -113,13 +133,13 @@ class LiveCollectionViewController: UICollectionViewController {
         }
         
         // sort the channels
-        return channels.sort { $0.0 < $1.0 }
+        return channels.sorted { $0.0 < $1.0 }
     }
     
-    private func setDurationForServerReload(seconds: Double) {
+    fileprivate func setDurationForServerReload(_ seconds: Double) {
         reloadTimer.invalidate()
-        reloadTimer = NSTimer.scheduledTimerWithTimeInterval(
-            seconds,
+        reloadTimer = Timer.scheduledTimer(
+            timeInterval: seconds,
             target: self,
             selector: #selector(LiveCollectionViewController.reloadServerData),
             userInfo: nil,
@@ -132,18 +152,18 @@ class LiveCollectionViewController: UICollectionViewController {
         getDataFromServer()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowEpisode" {
-            if let indexPaths = collectionView!.indexPathsForSelectedItems() {
+            if let indexPaths = collectionView!.indexPathsForSelectedItems {
                 if let indexPath = indexPaths.first {
-                    let episodes = sortedChannels[indexPath.section].1
-                    let episode = episodes[indexPath.row]
+                    let episodes = sortedChannels[(indexPath as NSIndexPath).section].1
+                    let episode = episodes[(indexPath as NSIndexPath).row]
                     
                     if let episodeId = episode.episodeId {
                         apiManager.getEpisode(episodeId, completion: { (successful, episode) -> () in
                             if successful {
                                 if let episode = episode {
-                                    if let viewController = segue.destinationViewController as? EpisodeDetailsViewController {
+                                    if let viewController = segue.destination as? EpisodeDetailsViewController {
                                         viewController.episode = episode
                                     }
                                 }
@@ -160,22 +180,22 @@ class LiveCollectionViewController: UICollectionViewController {
 
 extension LiveCollectionViewController {
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return sortedChannels.count
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let channel = sortedChannels[section]
         
         return channel.1.count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseCellIdentifier, forIndexPath: indexPath) as! TeaserCollectionViewCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseCellIdentifier, for: indexPath) as! TeaserCollectionViewCell
         
-        let episodes = sortedChannels[indexPath.section].1
+        let episodes = sortedChannels[(indexPath as NSIndexPath).section].1
         
-        let episode = episodes[indexPath.row]
+        let episode = episodes[(indexPath as NSIndexPath).row]
         
         let placeholderImage = UIImage(named: "Overview_Placeholder")
         
@@ -193,31 +213,31 @@ extension LiveCollectionViewController {
         return cell
     }
     
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         var reusableView: UICollectionReusableView
         
         if kind == UICollectionElementKindSectionHeader {
-            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: reuseHeaderIdentifier, forIndexPath: indexPath) as! OverviewCollectionHeaderView
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: reuseHeaderIdentifier, for: indexPath) as! OverviewCollectionHeaderView
             
-            let channel = sortedChannels[indexPath.section]
+            let channel = sortedChannels[(indexPath as NSIndexPath).section]
             
             headerView.titleLabel.text = channel.0
             
             reusableView = headerView
         } else {
-            reusableView = super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath)
+            reusableView = super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, at: indexPath)
         }
         
         return reusableView
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let episodes = sortedChannels[indexPath.section].1
-        let episode = episodes[indexPath.row]
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let episodes = sortedChannels[(indexPath as NSIndexPath).section].1
+        let episode = episodes[(indexPath as NSIndexPath).row]
         
         if episode.isLiveStreamOnline() {
-            performSegueWithIdentifier("ShowEpisode", sender: self)
+            performSegue(withIdentifier: "ShowEpisode", sender: self)
         } else {
             var message = NSLocalizedString("Livestream is currently not available", comment: "Livestream Not Available Dialog Unknown Time")
             
@@ -225,14 +245,14 @@ extension LiveCollectionViewController {
                 message = String.localizedStringWithFormat(NSLocalizedString("Livestream is available in %@", comment: "Livestream Not Available Dialog Message"), duration)
             }
             
-            let alertController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
+            let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             
             let okTitle = NSLocalizedString("OK", comment: "Livestream Not Available Dialog OK Button")
-            let okAction = UIAlertAction(title: okTitle, style: .Cancel, handler: nil)
+            let okAction = UIAlertAction(title: okTitle, style: .cancel, handler: nil)
             
             alertController.addAction(okAction)
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
 }

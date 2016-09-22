@@ -16,9 +16,9 @@ class ProgramDetailsViewController: UIViewController {
     @IBOutlet weak var programImageView: UIImageView!
     @IBOutlet weak var favoriteButton: UIButton!
     
-    private let apiManager = ApiManager()
+    fileprivate let apiManager = ApiManager()
     
-    private var episodes = [Episode]()
+    fileprivate var episodes = [Episode]()
     
     var program: Program? {
         didSet {
@@ -31,13 +31,13 @@ class ProgramDetailsViewController: UIViewController {
         
         // clear the view
         programNameLabel.text = ""
-        favoriteButton.hidden = true
+        favoriteButton.isHidden = true
     }
     
-    private func setProgram() {
+    fileprivate func setProgram() {
         if let program = program {
             programNameLabel.text = program.name
-            favoriteButton.hidden = false
+            favoriteButton.isHidden = false
             
             // set favorite button
             setFavoriteButtonState()
@@ -54,19 +54,19 @@ class ProgramDetailsViewController: UIViewController {
         }
     }
     
-    private func setFavoriteButtonState() {
+    fileprivate func setFavoriteButtonState() {
         if let program = program {
             if SettingsManager.sharedInstance.isFavoriteProgam(program) {
-                favoriteButton.setImage(UIImage(named: "Button_Heart_Selected"), forState: .Normal)
+                favoriteButton.setImage(UIImage(named: "Button_Heart_Selected"), for: UIControlState())
             } else {
-                favoriteButton.setImage(UIImage(named: "Button_Heart"), forState: .Normal)
+                favoriteButton.setImage(UIImage(named: "Button_Heart"), for: UIControlState())
             }
         }
     }
     
     // MARK: Data Source
     
-    private func getDataFromServer() {
+    fileprivate func getDataFromServer() {
         if let programId = program?.programId {
             
             apiManager.getEpisodeByProgram(programId, completion: { (successful, episodes) in
@@ -80,7 +80,7 @@ class ProgramDetailsViewController: UIViewController {
         }
     }
     
-    @IBAction func favoriteButtonPushed(sender: AnyObject) {
+    @IBAction func favoriteButtonPushed(_ sender: AnyObject) {
         if let program = program {
             
             if SettingsManager.sharedInstance.isFavoriteProgam(program) {
@@ -94,12 +94,12 @@ class ProgramDetailsViewController: UIViewController {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowEpisode" {
             if let indexPath = episodeTableView.indexPathForSelectedRow {
-                let episode = episodes[indexPath.row]
+                let episode = episodes[(indexPath as NSIndexPath).row]
                 
-                if let viewController = segue.destinationViewController as? EpisodeDetailsViewController {
+                if let viewController = segue.destination as? EpisodeDetailsViewController {
                     viewController.episode = episode
                 }
             }
@@ -108,25 +108,25 @@ class ProgramDetailsViewController: UIViewController {
 }
 
 extension ProgramDetailsViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return episodes.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("EpisodeCell", forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EpisodeCell", for: indexPath)
         
-        let episode = episodes[indexPath.row]
+        let episode = episodes[(indexPath as NSIndexPath).row]
         
         cell.textLabel?.text = episode.getFormatedTitle()
         
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("ShowEpisode", sender: self)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ShowEpisode", sender: self)
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if episodes.count > 0 {
             return NSLocalizedString("Episodes", comment: "ProgramDetailsViewController: Episodes Title For Header")
         }

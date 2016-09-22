@@ -20,17 +20,17 @@ class SettingsManager {
     }
     
     // Settings Keys
-    private let favoriteProgramsKey = "favoritePrograms"
+    fileprivate let favoriteProgramsKey = "favoritePrograms"
     
-    private let defaults = NSUserDefaults.standardUserDefaults()
+    fileprivate let defaults = UserDefaults.standard
     
     // MARK: Favorites
     
     var favoritePrograms: Set<Program>? {
         get {
-            if let data  = defaults.objectForKey(favoriteProgramsKey) as? NSData {
-                let unarc = NSKeyedUnarchiver(forReadingWithData: data)
-                return unarc.decodeObjectForKey("root") as? Set<Program>
+            if let data  = defaults.object(forKey: favoriteProgramsKey) as? Data {
+                let unarc = NSKeyedUnarchiver(forReadingWith: data)
+                return unarc.decodeObject(forKey: "root") as? Set<Program>
             }
             
             return nil
@@ -38,13 +38,13 @@ class SettingsManager {
         
         set {
             if let _ = newValue {
-                let object = NSKeyedArchiver.archivedDataWithRootObject(newValue!)
-                defaults.setObject(object, forKey: favoriteProgramsKey)
+                let object = NSKeyedArchiver.archivedData(withRootObject: newValue!)
+                defaults.set(object, forKey: favoriteProgramsKey)
             }
         }
     }
     
-    func addFavoriteProgram(program: Program) {
+    func addFavoriteProgram(_ program: Program) {
         if let _ = self.favoritePrograms {
             self.favoritePrograms!.insert(program)
         } else {
@@ -54,18 +54,18 @@ class SettingsManager {
             self.favoritePrograms = favs
         }
         
-        NSNotificationCenter.defaultCenter().postNotificationName(AppConstants.FavoritesUpdatedKey, object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: AppConstants.FavoritesUpdatedKey), object: nil)
     }
     
-    func removeFavoriteProgram(program: Program) {
+    func removeFavoriteProgram(_ program: Program) {
         if let _ = self.favoritePrograms {
             self.favoritePrograms!.remove(program)
         }
         
-        NSNotificationCenter.defaultCenter().postNotificationName(AppConstants.FavoritesUpdatedKey, object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: AppConstants.FavoritesUpdatedKey), object: nil)
     }
     
-    func isFavoriteProgam(program: Program) -> Bool {
+    func isFavoriteProgam(_ program: Program) -> Bool {
         if let result = favoritePrograms?.contains(program) {
             return result
         }

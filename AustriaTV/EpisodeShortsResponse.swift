@@ -14,7 +14,7 @@ class EpisodeShortsResponse: Mappable {
     
     required init?(_ map: Map) { }
     
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         episodes <- map["episodeShorts"]
     }
 }

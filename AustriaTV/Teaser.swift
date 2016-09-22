@@ -17,19 +17,19 @@ class Teaser: Mappable {
     
     required init?(_ map: Map) { }
     
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         episodeId <- map["episodeId"]
         title <- map["title"]
         images <- map["images"]
     }
     
-    func getImageURL() -> NSURL? {
+    func getImageURL() -> URL? {
         if let images = images {
             for image in images {
                 if let imageName = image.name {
                     if imageName == "image2_mobile" {
                         if let url = image.url {
-                            return NSURL(string: url)
+                            return URL(string: url)
                         }
                     }
                 }

@@ -17,7 +17,7 @@ class EpisodeDetailsViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var durationLabel: UILabel!
     
-    private let apiManager = ApiManager()
+    fileprivate let apiManager = ApiManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,22 +39,22 @@ class EpisodeDetailsViewController: UIViewController {
     
     // MARK: Episode
     
-    private func setEpisode() {
+    fileprivate func setEpisode() {
         if let episode = episode {
             // load details if not already loaded
             switch episode.type {
-            case .Short:
+            case .short:
                 updateEpisodeDetails()
-            case .Detail:
+            case .detail:
                 setEpisodeDetails()
                 
                 // enable play button
-                playButton.enabled = true
+                playButton.isEnabled = true
             }
         }
     }
     
-    private func updateEpisodeDetails() {
+    fileprivate func updateEpisodeDetails() {
         if let episode = episode {
             if let episodeId = episode.episodeId {
                 apiManager.getEpisode(episodeId, completion: { (successful, episode) in
@@ -68,7 +68,7 @@ class EpisodeDetailsViewController: UIViewController {
         }
     }
     
-    private func setEpisodeDetails() {
+    fileprivate func setEpisodeDetails() {
         if let episode = episode {
             if episodeTitleLabel != nil {
                 episodeTitleLabel.text = episode.title
@@ -94,20 +94,20 @@ class EpisodeDetailsViewController: UIViewController {
     
     // MARK: - Notifications
     
-    private func removeNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(AVPlayerItemDidPlayToEndTimeNotification)
+    fileprivate func removeNotifications() {
+        NotificationCenter.default.removeObserver(NSNotification.Name.AVPlayerItemDidPlayToEndTime)
     }
     
-    func playerDidFinishPlaying(notification: NSNotification) {
+    func playerDidFinishPlaying(_ notification: Notification) {
         Log.debug(#function)
-        self.dismissViewControllerAnimated(true) { () -> Void in
+        self.dismiss(animated: true) { () -> Void in
             Log.debug("Back from player view")
         }
     }
     
     // MARK: UI
     
-    @IBAction func playButtonPushed(sender: AnyObject) {
+    @IBAction func playButtonPushed(_ sender: AnyObject) {
         if let _ = episode {
             playEpisode(episode!)
         }
@@ -115,7 +115,7 @@ class EpisodeDetailsViewController: UIViewController {
     
     // MARK: Play Video
     
-    private func playEpisode(episode: Episode) {
+    fileprivate func playEpisode(_ episode: Episode) {
         
         if let episodeType = episode.episodeType {
             switch episodeType {
@@ -127,7 +127,7 @@ class EpisodeDetailsViewController: UIViewController {
         }
     }
     
-    private func playLivestreamEpisode(episode: Episode) {
+    fileprivate func playLivestreamEpisode(_ episode: Episode) {
         var avPlayerItems = [AVPlayerItem]()
         
         if let videos = episode.livestreamingVideos {
@@ -140,13 +140,13 @@ class EpisodeDetailsViewController: UIViewController {
         }
     }
     
-    private func playVideoOnDemandEpisode(episode: Episode) {
+    fileprivate func playVideoOnDemandEpisode(_ episode: Episode) {
         var avPlayerItems = [AVPlayerItem]()
         
         if let segments = episode.segments {
             for segment in segments {
                 if let videos = segment.videos {
-                    avPlayerItems.appendContentsOf(prepareForPlayback(videos, forEpisode: episode))
+                    avPlayerItems.append(contentsOf: prepareForPlayback(videos, forEpisode: episode))
                 }
             }
         }
@@ -157,7 +157,7 @@ class EpisodeDetailsViewController: UIViewController {
         }
     }
     
-    private func prepareForPlayback(videos: [Video], forEpisode episode: Episode) -> [AVPlayerItem] {
+    fileprivate func prepareForPlayback(_ videos: [Video], forEpisode episode: Episode) -> [AVPlayerItem] {
         var avPlayerItems = [AVPlayerItem]()
         
         for video in videos {
@@ -166,8 +166,8 @@ class EpisodeDetailsViewController: UIViewController {
                     if isHttpMp4URL(streamingURL, type: episodeType) {
                         Log.debug("URL: \(streamingURL)")
                         
-                        if let url = NSURL(string: streamingURL) {
-                            let item = AVPlayerItem(URL: url)
+                        if let url = URL(string: streamingURL) {
+                            let item = AVPlayerItem(url: url)
                             
                             var metadataItems = [AVMetadataItem]()
                             
@@ -175,8 +175,8 @@ class EpisodeDetailsViewController: UIViewController {
                             if let title = episode.title {
                                 let titleMetadata = AVMutableMetadataItem()
                                 titleMetadata.identifier = AVMetadataCommonIdentifierTitle
-                                titleMetadata.locale = NSLocale.currentLocale()
-                                titleMetadata.value = title
+                                titleMetadata.locale = Locale.current
+                                titleMetadata.value = title as (NSCopying & NSObjectProtocol)?
                                 
                                 metadataItems.append(titleMetadata)
                             }
@@ -185,8 +185,8 @@ class EpisodeDetailsViewController: UIViewController {
                             if let description = episode.getFullDescription() {
                                 let descriptionMetadata = AVMutableMetadataItem()
                                 descriptionMetadata.identifier = AVMetadataCommonIdentifierDescription
-                                descriptionMetadata.locale = NSLocale.currentLocale()
-                                descriptionMetadata.value = description
+                                descriptionMetadata.locale = Locale.current
+                                descriptionMetadata.value = description as (NSCopying & NSObjectProtocol)?
                                 
                                 metadataItems.append(descriptionMetadata)
                             }
@@ -195,8 +195,8 @@ class EpisodeDetailsViewController: UIViewController {
                             if let image = episodeImageView.image {
                                 let artworkMetadata = AVMutableMetadataItem()
                                 artworkMetadata.identifier = AVMetadataCommonIdentifierArtwork
-                                artworkMetadata.locale = NSLocale.currentLocale()
-                                artworkMetadata.value = UIImageJPEGRepresentation(image, 1)
+                                artworkMetadata.locale = Locale.current
+                                artworkMetadata.value = UIImageJPEGRepresentation(image, 1) as (NSCopying & NSObjectProtocol)?
                                 
                                 metadataItems.append(artworkMetadata)
                             }
@@ -213,7 +213,7 @@ class EpisodeDetailsViewController: UIViewController {
         return avPlayerItems
     }
     
-    private func isHttpMp4URL(streamingURL: String, type: Episode.EpisodeType) -> Bool {
+    fileprivate func isHttpMp4URL(_ streamingURL: String, type: Episode.EpisodeType) -> Bool {
         switch type {
         case .livestream:
             return isHttpMP4LiveStreamingURL(streamingURL)
@@ -222,9 +222,9 @@ class EpisodeDetailsViewController: UIViewController {
         }
     }
     
-    private func isOnDemandMP4StreamingURL(streamingURL: String) -> Bool {
-        if streamingURL.rangeOfString("mp4") != nil {
-            if streamingURL.rangeOfString("http://") != nil {
+    fileprivate func isOnDemandMP4StreamingURL(_ streamingURL: String) -> Bool {
+        if streamingURL.range(of: "mp4") != nil {
+            if streamingURL.range(of: "http://") != nil {
                 return true
             }
         }
@@ -232,10 +232,10 @@ class EpisodeDetailsViewController: UIViewController {
         return false
     }
     
-    private func isHttpMP4LiveStreamingURL(streamingURL: String) -> Bool {
-        if streamingURL.rangeOfString("playlist.m3u8") != nil {
-            if streamingURL.rangeOfString("_q4a") != nil {
-                if streamingURL.rangeOfString("ipad") != nil {
+    fileprivate func isHttpMP4LiveStreamingURL(_ streamingURL: String) -> Bool {
+        if streamingURL.range(of: "playlist.m3u8") != nil {
+            if streamingURL.range(of: "_q4a") != nil {
+                if streamingURL.range(of: "ipad") != nil {
                     return true
                 }
             }
@@ -244,20 +244,20 @@ class EpisodeDetailsViewController: UIViewController {
         return false
     }
     
-    private func playVideos(items: [AVPlayerItem]) {
+    fileprivate func playVideos(_ items: [AVPlayerItem]) {
         let avPlayerController = AVPlayerViewController()
         
         let player = AVQueuePlayer(items: items)
         
         // get notification if last segment has finished playing
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
             selector: #selector(EpisodeDetailsViewController.playerDidFinishPlaying(_:)),
-            name: AVPlayerItemDidPlayToEndTimeNotification,
+            name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
             object: player.items().last)
         
         avPlayerController.player = player
         
-        self.presentViewController(avPlayerController, animated: true, completion: { () -> Void in
+        self.present(avPlayerController, animated: true, completion: { () -> Void in
             player.play()
         })
     }

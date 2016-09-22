@@ -1,6 +1,5 @@
 # Internet
-github "Alamofire/Alamofire" ~> 3.3
-github "tristanhimmelman/AlamofireObjectMapper" ~> 3.0
+github "tristanhimmelman/AlamofireObjectMapper" ~> 4.0
 
 # Images
 github "onevcat/Kingfisher" ~> 2.4

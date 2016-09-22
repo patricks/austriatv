@@ -12,8 +12,8 @@ import ObjectMapper
 class Program: NSObject, Mappable, NSCoding {
     
     enum Type {
-        case Short
-        case Detail
+        case short
+        case detail
     }
     
     var programId: Int?
@@ -25,56 +25,56 @@ class Program: NSObject, Mappable, NSCoding {
         get {
             // if programDescription property is set, details already loaded
             if let _ = self.programDescription {
-                return .Detail
+                return .detail
             }
             
-            return .Short
+            return .short
         }
     }
     
     // NSCoding and JSON keys
-    private let programIdKey = "programId"
-    private let nameKey = "name"
-    private let imagesKey = "images"
-    private let programDescriptionKey = "programDescription"
+    fileprivate let programIdKey = "programId"
+    fileprivate let nameKey = "name"
+    fileprivate let imagesKey = "images"
+    fileprivate let programDescriptionKey = "programDescription"
     
     required init?(_ map: Map) { }
     
     required init?(coder aDecoder: NSCoder) {
-        self.programId = aDecoder.decodeIntegerForKey(programIdKey)
+        self.programId = aDecoder.decodeInteger(forKey: programIdKey)
         
-        if let name = aDecoder.decodeObjectForKey(nameKey) as? String {
+        if let name = aDecoder.decodeObject(forKey: nameKey) as? String {
             self.name = name
         }
         
-        if let programDescription = aDecoder.decodeObjectForKey(programDescriptionKey) as? String {
+        if let programDescription = aDecoder.decodeObject(forKey: programDescriptionKey) as? String {
             self.programDescription = programDescription
         }
         
-        if let images = aDecoder.decodeObjectForKey(imagesKey) as? [Image] {
+        if let images = aDecoder.decodeObject(forKey: imagesKey) as? [Image] {
             self.images = images
         }
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         if let programId = self.programId {
-            aCoder.encodeInteger(programId, forKey: programIdKey)
+            aCoder.encode(programId, forKey: programIdKey)
         }
         
         if let name = self.name {
-            aCoder.encodeObject(name, forKey: nameKey)
+            aCoder.encode(name, forKey: nameKey)
         }
         
         if let programDescription = self.programDescription {
-            aCoder.encodeObject(programDescription, forKey: programDescriptionKey)
+            aCoder.encode(programDescription, forKey: programDescriptionKey)
         }
         
         if let images = self.images {
-            aCoder.encodeObject(images, forKey: imagesKey)
+            aCoder.encode(images, forKey: imagesKey)
         }
     }
     
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         programId <- map[programIdKey]
         name <- map[nameKey]
         images <- map[imagesKey]
@@ -85,7 +85,7 @@ class Program: NSObject, Mappable, NSCoding {
         return programId!.hashValue
     }
     
-    override func isEqual(object: AnyObject?) -> Bool {
+    override func isEqual(_ object: Any?) -> Bool {
         if let other = object as? Program {
             return self.programId! == other.programId
         } else {
@@ -93,12 +93,12 @@ class Program: NSObject, Mappable, NSCoding {
         }
     }
     
-    func getImageURL() -> NSURL? {
+    func getImageURL() -> URL? {
         if let images = images {
             for image in images {
                 if image.name == "logo" {
                     if let url = image.url {
-                        return NSURL(string: url)
+                        return URL(string: url)
                     }
                 }
             }

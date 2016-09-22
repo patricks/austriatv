@@ -7,21 +7,32 @@
 //
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class ProgramsTableViewController: UITableViewController {
     
     @IBOutlet weak var programFilterSegmentedControl: UISegmentedControl!
     
-    private var activityIndicatorView: UIActivityIndicatorView!
+    fileprivate var activityIndicatorView: UIActivityIndicatorView!
     
-    private let apiManager = ApiManager()
+    fileprivate let apiManager = ApiManager()
     
-    private var allPrograms = [Program]()
-    private var visiblePrograms = [Program]()
-    private var favoritePrograms = [Program]()
+    fileprivate var allPrograms = [Program]()
+    fileprivate var visiblePrograms = [Program]()
+    fileprivate var favoritePrograms = [Program]()
     
-    private let delayedSeguesOperationQueue = NSOperationQueue()
-    private static let performSegueDelay: NSTimeInterval = 0.1
+    fileprivate let delayedSeguesOperationQueue = OperationQueue()
+    fileprivate static let performSegueDelay: TimeInterval = 0.1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +44,7 @@ class ProgramsTableViewController: UITableViewController {
         getStoredPrograms()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if activityIndicatorView == nil {
@@ -51,7 +62,7 @@ class ProgramsTableViewController: UITableViewController {
     
     // MARK: UI
     
-    private func setupUI() {
+    fileprivate func setupUI() {
         self.navigationItem.title = NSLocalizedString("Programs", comment: "ProgramsTableViewController - Title")
         /*
          self.navigationController?.navigationBar.titleTextAttributes = [
@@ -61,13 +72,13 @@ class ProgramsTableViewController: UITableViewController {
          */
         
         self.navigationItem.title = nil
-        self.tableView.maskView = nil
+        self.tableView.mask = nil
         
         setupLoadingIndicator()
     }
     
-    private func setupLoadingIndicator() {
-        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+    fileprivate func setupLoadingIndicator() {
+        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         activityIndicatorView.center = self.view.center
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.color = AppConstants.ActivityIndicatorColor
@@ -75,7 +86,7 @@ class ProgramsTableViewController: UITableViewController {
         self.view.addSubview(activityIndicatorView)
     }
     
-    @IBAction func programFilterChanged(sender: UISegmentedControl) {
+    @IBAction func programFilterChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 1:
             getStoredPrograms()
@@ -90,13 +101,13 @@ class ProgramsTableViewController: UITableViewController {
     
     // MARK: Data Source
     
-    private func getStoredPrograms() {
+    fileprivate func getStoredPrograms() {
         if let favorites = SettingsManager.sharedInstance.favoritePrograms {
             favoritePrograms = Array(favorites)
         }
     }
     
-    private func getDataFromServer() {
+    fileprivate func getDataFromServer() {
         apiManager.getPrograms { (successful, programs) in
             if successful {
                 if let _ = programs {
@@ -109,7 +120,7 @@ class ProgramsTableViewController: UITableViewController {
                         self.visiblePrograms = self.allPrograms
                     }
                     
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         self.tableView.reloadData()
                     })
                 }
@@ -117,27 +128,27 @@ class ProgramsTableViewController: UITableViewController {
         }
     }
     
-    private func sortPrograms() {
-        let sorted = allPrograms.sort { $0.name < $1.name }
+    fileprivate func sortPrograms() {
+        let sorted = allPrograms.sorted { $0.name < $1.name }
         
         allPrograms = sorted
     }
     
     // MARK: - Notifications
     
-    private func setupNotifications() {
+    fileprivate func setupNotifications() {
         // get notifications for if beacons updates appear
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
                                                          selector: #selector(ProgramsTableViewController.onFavoritesUpdated(_:)),
-                                                         name: AppConstants.FavoritesUpdatedKey,
+                                                         name: NSNotification.Name(rawValue: AppConstants.FavoritesUpdatedKey),
                                                          object: nil)
     }
     
-    private func removeNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(AppConstants.FavoritesUpdatedKey)
+    fileprivate func removeNotifications() {
+        NotificationCenter.default.removeObserver(AppConstants.FavoritesUpdatedKey)
     }
     
-    func onFavoritesUpdated(notification: NSNotification) {
+    func onFavoritesUpdated(_ notification: Notification) {
         
         if programFilterSegmentedControl.selectedSegmentIndex == 1 {
             getStoredPrograms()
@@ -149,7 +160,7 @@ class ProgramsTableViewController: UITableViewController {
     
     // MARK: Manage DetailsView
     
-    private func setupDetailsViewWithProgram(program: Program) {
+    fileprivate func setupDetailsViewWithProgram(_ program: Program) {
         if let childNavigationController = self.splitViewController?.viewControllers.last as? UINavigationController {
             if let childViewController = childNavigationController.viewControllers.first as? ProgramDetailsViewController {
                 childViewController.program = program
@@ -161,7 +172,7 @@ class ProgramsTableViewController: UITableViewController {
 // MARK: - Table view data source
 
 extension ProgramsTableViewController {
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if visiblePrograms.count == 0 {
             activityIndicatorView.startAnimating()
         } else {
@@ -171,45 +182,45 @@ extension ProgramsTableViewController {
         return visiblePrograms.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ProgramCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProgramCell", for: indexPath)
         
-        let program = visiblePrograms[indexPath.row]
+        let program = visiblePrograms[(indexPath as NSIndexPath).row]
         
-        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.textLabel?.textColor = UIColor.white
         cell.textLabel?.text = program.name
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, didUpdateFocusInContext context: UITableViewFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
+    override func tableView(_ tableView: UITableView, didUpdateFocusIn context: UITableViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         
         // change the text color of the selected cell
         if let previousIndexPath = context.previouslyFocusedIndexPath {
-            if let previousCell = tableView.cellForRowAtIndexPath(previousIndexPath) {
-                previousCell.textLabel?.textColor = UIColor.whiteColor()
+            if let previousCell = tableView.cellForRow(at: previousIndexPath) {
+                previousCell.textLabel?.textColor = UIColor.white
             }
         }
         
-        guard let nextFocusedView = context.nextFocusedView where nextFocusedView.isDescendantOfView(tableView) else { return }
+        guard let nextFocusedView = context.nextFocusedView , nextFocusedView.isDescendant(of: tableView) else { return }
         guard let indexPath = context.nextFocusedIndexPath else { return }
         
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
             cell.textLabel?.textColor = AppConstants.Blue
         }
         
         delayedSeguesOperationQueue.cancelAllOperations()
         
-        let performSegueOperation = NSBlockOperation()
+        let performSegueOperation = BlockOperation()
         
         performSegueOperation.addExecutionBlock { [weak self] in
             // Pause the block so the segue isn't immediately performed.
-            NSThread.sleepForTimeInterval(ProgramsTableViewController.performSegueDelay)
+            Thread.sleep(forTimeInterval: ProgramsTableViewController.performSegueDelay)
             
-            guard !performSegueOperation.cancelled else { return }
+            guard !performSegueOperation.isCancelled else { return }
             
-            NSOperationQueue.mainQueue().addOperationWithBlock {
-                if let program = self?.visiblePrograms[indexPath.row] {
+            OperationQueue.main.addOperation {
+                if let program = self?.visiblePrograms[(indexPath as NSIndexPath).row] {
                     self?.setupDetailsViewWithProgram(program)
                 }
             }

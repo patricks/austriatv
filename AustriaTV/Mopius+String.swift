@@ -14,9 +14,9 @@ extension String {
     Generate a UIColor from a hex color string
     */
     var hexColor: UIColor? {
-        let hex = self.stringByTrimmingCharactersInSet(NSCharacterSet.alphanumericCharacterSet().invertedSet)
+        let hex = self.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int = UInt32()
-        guard NSScanner(string: hex).scanHexInt(&int) else {
+        guard Scanner(string: hex).scanHexInt32(&int) else {
             return nil
         }
         let a, r, g, b: UInt32

@@ -9,24 +9,24 @@
 import Foundation
 
 enum TeaserCategory: Int {
-    case Hightlights
-    case Newest
-    case MostViewed
-    case Recommendations
+    case hightlights
+    case newest
+    case mostViewed
+    case recommendations
     
-    static let allCategories: [TeaserCategory] = [.Hightlights, .Newest, .MostViewed, .Recommendations]
+    static let allCategories: [TeaserCategory] = [.hightlights, .newest, .mostViewed, .recommendations]
 }
 
 extension TeaserCategory: CustomStringConvertible {
     var description: String {
         switch self {
-        case .Hightlights:
+        case .hightlights:
             return NSLocalizedString("Highlights", comment: "Category: Highlights")
-        case .Newest:
+        case .newest:
             return NSLocalizedString("Newest", comment: "Category: Newest")
-        case .MostViewed:
+        case .mostViewed:
             return NSLocalizedString("Most Viewed", comment: "Category: Most Viewed")
-        case .Recommendations:
+        case .recommendations:
             return NSLocalizedString("Recommentations", comment: "Category: Recommentations")
         }
     }
